@@ -41,6 +41,8 @@ html, body { background: var(--bg); color: var(--ink); }
 .card .description {
   color: #a3a3b2 !important;
   line-height: 1.6;
+  scrollbar-width: thin;
+  scrollbar-color: #1a1a26 #0b0b12;
 }
 
 .card .description strong {
@@ -54,6 +56,10 @@ html, body { background: var(--bg); color: var(--ink); }
 }
 
 /* Custom scrollbar for card descriptions */
+.card .description {
+  max-height: 12rem; /* 192px - forces scrollbar when content exceeds this */
+}
+
 .card .description::-webkit-scrollbar {
   width: 6px;
 }
