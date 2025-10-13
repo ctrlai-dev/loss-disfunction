@@ -16,7 +16,11 @@ const { track } = Astro.props as { track: Track };
   </a>
   <div class="p-4">
     <h3 class="font-semibold mb-1">{track.title}</h3>
-    {track.description && (<p class="text-sm text-muted mb-2">{track.description}</p>)}
+    {track.description && (
+      <div class="description text-sm mb-2 whitespace-pre-line">
+        {track.description}
+      </div>
+    )}
     {track.tags && (
       <div class="flex flex-wrap gap-2">{track.tags.map(t => <span class="badge">{t}</span>)}</div>
     )}

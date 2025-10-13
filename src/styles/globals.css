@@ -15,9 +15,43 @@ html, body { background: var(--bg); color: var(--ink); }
 
 .container { @apply max-w-6xl mx-auto px-4; }
 
-.nav-link { @apply text-muted hover:text-cyan transition-colors; }
+.nav-link { 
+  @apply text-muted hover:text-cyan transition-colors;
+  color: #a3a3b2 !important;
+}
 
-.card { @apply bg-[#0b0b12] border border-[#1a1a26] rounded-2xl overflow-hidden shadow-glow hover:shadow-glowcyan transition-transform; }
+.nav-link:hover {
+  color: #00ffff !important;
+}
+
+.card { 
+  @apply bg-[#0b0b12] border border-[#1a1a26] rounded-2xl overflow-hidden shadow-glow hover:shadow-glowcyan transition-transform;
+  background-color: #0b0b12 !important;
+  color: #f2f2f7 !important;
+}
+
+.card h3 {
+  color: #f2f2f7 !important;
+}
+
+.card p {
+  color: #a3a3b2 !important;
+}
+
+.card .description {
+  color: #a3a3b2 !important;
+  line-height: 1.6;
+}
+
+.card .description strong {
+  color: #00ffff !important;
+  font-weight: 600;
+}
+
+.card .description em {
+  color: #8b5cf6 !important;
+  font-style: italic;
+}
 
 .badge { @apply text-xs px-2 py-1 rounded-full bg-[#141428] border border-[#262649] text-[#d7d0ff]; }
 
