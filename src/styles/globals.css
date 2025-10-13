@@ -53,6 +53,25 @@ html, body { background: var(--bg); color: var(--ink); }
   font-style: italic;
 }
 
+/* Custom scrollbar for card descriptions */
+.card .description::-webkit-scrollbar {
+  width: 6px;
+}
+
+.card .description::-webkit-scrollbar-track {
+  background: #0b0b12;
+  border-radius: 3px;
+}
+
+.card .description::-webkit-scrollbar-thumb {
+  background: #1a1a26;
+  border-radius: 3px;
+}
+
+.card .description::-webkit-scrollbar-thumb:hover {
+  background: #262649;
+}
+
 .badge { @apply text-xs px-2 py-1 rounded-full bg-[#141428] border border-[#262649] text-[#d7d0ff]; }
 
 .btn { @apply inline-block px-4 py-2 rounded-xl text-black font-medium; }
