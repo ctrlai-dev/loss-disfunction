@@ -3,13 +3,17 @@ import Base from '@/layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import YouTube from '@/components/YouTubeEmbed.astro';
 const logs = await getCollection('logs');
+const renderedLogs = await Promise.all(logs.map(async (entry) => ({
+  ...entry,
+  Content: (await entry.render()).Content
+})));
 ---
 <Base title="System Logs — LOSS DISFUNCTION">
   <div class="container py-12">
     <h1 class="text-3xl font-bold">System Logs</h1>
     <p class="text-muted mb-6">Fragments of the Seed's evolution — ordered 000 → 007.</p>
     <div class="space-y-16">
-      {logs.sort((a,b)=>a.slug.localeCompare(b.slug)).map((entry) => (
+      {renderedLogs.sort((a,b)=>a.slug.localeCompare(b.slug)).map((entry) => (
         <section id={`log-${entry.data.index.toString().padStart(3,'0')}`}>
           <h2 class="text-xl font-semibold mb-2">[{entry.data.index.toString().padStart(3,'0')}] {entry.data.title}</h2>
           {entry.data.youtube && (<div class="mb-4"><YouTube id={entry.data.youtube} title={entry.data.title} /></div>)}
