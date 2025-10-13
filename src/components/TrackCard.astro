@@ -1,0 +1,24 @@
+---
+interface Track {
+  title: string; id?: string; spotify?: string; cover?: string; tags?: string[]; description?: string; slug?: string;
+}
+const { track } = Astro.props as { track: Track };
+---
+<article class="card">
+  <a href={track.slug ?? (track.id ? `https://youtube.com/watch?v=${track.id}` : '#')} target={track.slug ? undefined : '_blank'}>
+    {track.cover ? (
+      <img src={track.cover} alt={track.title} class="w-full aspect-video object-cover" loading="lazy" />
+    ) : track.id ? (
+      <img src={`https://img.youtube.com/vi/${track.id}/hqdefault.jpg`} alt={track.title} class="w-full aspect-video object-cover" loading="lazy" />
+    ) : (
+      <div class="w-full aspect-video bg-[#0e0e18]"></div>
+    )}
+  </a>
+  <div class="p-4">
+    <h3 class="font-semibold mb-1">{track.title}</h3>
+    {track.description && (<p class="text-sm text-muted mb-2">{track.description}</p>)}
+    {track.tags && (
+      <div class="flex flex-wrap gap-2">{track.tags.map(t => <span class="badge">{t}</span>)}</div>
+    )}
+  </div>
+</article>

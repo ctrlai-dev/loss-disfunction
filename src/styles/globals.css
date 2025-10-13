@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #050507;
+  --ink: #f2f2f7;
+  --muted: #a3a3b2;
+  --cyan: #00ffff;
+  --violet: #8b5cf6;
+  --ember: #ff3300;
+}
+
+html, body { background: var(--bg); color: var(--ink); }
+
+.container { @apply max-w-6xl mx-auto px-4; }
+
+.nav-link { @apply text-muted hover:text-cyan transition-colors; }
+
+.card { @apply bg-[#0b0b12] border border-[#1a1a26] rounded-2xl overflow-hidden shadow-glow hover:shadow-glowcyan transition-transform; }
+
+.badge { @apply text-xs px-2 py-1 rounded-full bg-[#141428] border border-[#262649] text-[#d7d0ff]; }
+
+.btn { @apply inline-block px-4 py-2 rounded-xl text-black font-medium; }
+.btn { background: linear-gradient(90deg, var(--cyan), var(--violet)); box-shadow: 0 0 30px rgba(0,255,255,0.15); }
+.btn:hover { box-shadow: 0 0 40px rgba(139,92,246,0.25); }

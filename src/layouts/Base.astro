@@ -1,0 +1,35 @@
+---
+const { title = 'LOSS DISFUNCTION', description = 'Music • Story • Universe', pageClass = '' } = Astro.props;
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" />
+    <link rel="preconnect" href="https://img.youtube.com" />
+    <link rel="stylesheet" href="/src/styles/globals.css" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body class={`min-h-screen ${pageClass}`}>
+    <header class="sticky top-0 z-50 backdrop-blur bg-[#050507cc] border-b border-[#191927]">
+      <div class="container flex items-center gap-6 py-3">
+        <a href="/" class="text-cyan font-semibold tracking-wide">LOSS DISFUNCTION</a>
+        <nav class="ml-auto flex gap-4 text-sm">
+          <a class="nav-link" href="/music">Music</a>
+          <a class="nav-link" href="/lore">System Logs</a>
+          <a class="nav-link" href="https://www.youtube.com/" target="_blank">YouTube</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="border-t border-[#191927] mt-16">
+      <div class="container text-sm text-muted py-6">© {new Date().getFullYear()} LOSS DISFUNCTION</div>
+    </footer>
+  </body>
+</html>
