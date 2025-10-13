@@ -1,0 +1,54 @@
+# ─────────────────────────────
+# 🚀 LOSS DISFUNCTION (Astro + Netlify)
+# ─────────────────────────────
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+# (If you want to lock dependencies for Netlify builds, remove the line above)
+
+# Astro build output
+dist/
+.astro/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDE / Editor junk
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Netlify / Local build caches
+.netlify/
+.cache/
+.vercel/
+astro.config.mjs.timestamp-*
+tailwind.config.cjs.timestamp-*
+
+# OS / Miscellaneous
+*.log
+*.tmp
+*.bak
+*.lock
+*.pid
+*.seed
+*.tgz
+
+# Coverage / Testing
+coverage/
+__tests__/
+*.spec.*
+*.test.*
+
+# Optional local scripts or tooling
+scripts/local/*
+
