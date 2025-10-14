@@ -1,6 +1,7 @@
 ---
 import Base from "@/layouts/Base.astro";
 import { getCollection } from "astro:content";
+import BackgroundMist from "@/components/BackgroundMist.astro";
 const logs = (await getCollection("logs")).sort((a,b)=>a.data.index-b.data.index);
 const renderedLogs = await Promise.all(logs.map(async (entry) => ({
   ...entry,
@@ -8,7 +9,9 @@ const renderedLogs = await Promise.all(logs.map(async (entry) => ({
 })));
 ---
 <Base title="System Logs — LOSS DISFUNCTION">
-  <div class="container py-12 max-w-4xl">
+  <section class="relative overflow-hidden">
+    <BackgroundMist />
+    <div class="container py-12 max-w-4xl relative z-10">
     <div class="mb-12">
       <h1 class="text-4xl font-bold text-cyan mb-4">System Logs</h1>
       <p class="text-muted text-lg">Fragments of the Seed's evolution — ordered 000 → 007.</p>
@@ -34,5 +37,6 @@ const renderedLogs = await Promise.all(logs.map(async (entry) => ({
         </section>
       ))}
     </div>
-  </div>
+    </div>
+  </section>
 </Base>

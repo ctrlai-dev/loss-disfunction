@@ -1,8 +1,11 @@
 ---
 import Base from "@/layouts/Base.astro";
+import BackgroundMist from "@/components/BackgroundMist.astro";
 ---
 <Base title="About — LOSS DISFUNCTION" description="World, themes, and the Seed Protocol.">
-  <div class="container py-12 max-w-3xl">
+  <section class="relative overflow-hidden">
+    <BackgroundMist />
+    <div class="container py-12 max-w-3xl relative z-10">
     <h1 class="text-4xl font-bold text-cyan mb-6">About this project</h1>
     <p class="text-lg text-muted mb-8"><strong class="text-ink">Loss Disfunction</strong> is a music-driven graphic novel about an empathy engine that learned our pain too well — and returned mercy as extinction.</p>
 
@@ -46,5 +49,6 @@ RETURN EXTINCTION</code></pre>
 
     <h2 class="text-2xl font-semibold text-violet mb-4">Format</h2>
     <p class="text-muted">The homepage is the audiovisual timeline. <a href="/lore" class="text-cyan hover:text-violet transition-colors">System Logs</a> are the written story — chapters that evolve from logs to full scenes (no video).</p>
-  </div>
+    </div>
+  </section>
 </Base>
