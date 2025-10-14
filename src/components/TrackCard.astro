@@ -6,7 +6,10 @@ const { track } = Astro.props as { track: Track };
 
 ---
 <article class="card h-[28rem] flex flex-col">
-  <a href={track.slug ?? (track.id ? `https://youtube.com/watch?v=${track.id}` : '#')} target={track.slug ? undefined : '_blank'}>
+  <a
+    href={track.slug ?? (track.id ? `https://youtube.com/watch?v=${track.id}` : "#")}
+    target="_blank"
+  >
     {track.cover ? (
       <img src={track.cover} alt={track.title} class="w-full aspect-video object-cover" loading="lazy" />
     ) : track.id ? (
