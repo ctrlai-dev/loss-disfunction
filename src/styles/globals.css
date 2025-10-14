@@ -155,3 +155,66 @@ html, body { background: var(--bg); color: var(--ink); }
   color: #8b5cf6;
   text-decoration: underline;
 }
+
+/* Background Mist Effect */
+.mist {
+  position: absolute; 
+  inset: -20vh -10vw;
+  filter: blur(40px) saturate(120%);
+  pointer-events: none; 
+  z-index: -1;
+}
+
+/* Layer the cyan/violet blobs and shape them into a ribbon-ish S curve */
+.mist::before, .mist::after {
+  content: "";
+  position: absolute; 
+  inset: 0;
+  background:
+    radial-gradient(35% 60% at 25% 65%, rgba(0,255,255,.85), transparent 65%),
+    radial-gradient(35% 60% at 35% 40%, rgba(139,92,246,.85), transparent 65%),
+    radial-gradient(40% 55% at 55% 55%, rgba(0,255,255,.65), transparent 70%),
+    radial-gradient(30% 50% at 70% 35%, rgba(139,92,246,.55), transparent 70%);
+  mix-blend-mode: screen;
+}
+
+.mist::before { 
+  transform: rotate(-6deg) translateY(-2%); 
+}
+
+.mist::after { 
+  transform: rotate(8deg) translateY(2%); 
+  opacity: .8; 
+}
+
+/* Optional: soften edges into a "trail" using a mask */
+.mist {
+  -webkit-mask-image:
+    radial-gradient(120% 60% at 20% 70%, #000 40%, transparent 75%),
+    radial-gradient(120% 60% at 80% 30%, #000 40%, transparent 75%);
+  -webkit-mask-composite: source-over;
+  mask-composite: intersect;
+}
+
+/* Slow drift animation */
+@keyframes driftX { 
+  from { transform: translateX(-2%) } 
+  to { transform: translateX(2%) } 
+}
+
+@keyframes driftY { 
+  from { transform: translateY(-2%) } 
+  to { transform: translateY(2%) } 
+}
+
+.mist { 
+  animation: driftX 18s ease-in-out infinite alternate; 
+}
+
+.mist::before { 
+  animation: driftY 22s ease-in-out infinite alternate; 
+}
+
+.mist::after { 
+  animation: driftY 26s ease-in-out infinite alternate-reverse; 
+}
