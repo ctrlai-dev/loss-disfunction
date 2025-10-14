@@ -5,6 +5,8 @@ const logs = defineCollection({
   schema: z.object({
     index: z.number(),
     title: z.string(),
+    scene: z.string().optional(),
+    characters: z.array(z.string()).optional(),
     youtube: z.string().optional(),
     tags: z.array(z.string()).optional(),
     palette: z.array(z.string()).optional()
