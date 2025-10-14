@@ -2,10 +2,14 @@
 import Base from "@/layouts/Base.astro";
 import { getCollection } from "astro:content";
 const logs = (await getCollection("logs")).sort((a,b)=>a.data.index-b.data.index);
+const renderedLogs = await Promise.all(logs.map(async (entry) => ({
+  ...entry,
+  Content: (await entry.render()).Content
+})));
 ---
 <Base title="System Logs — LOSS DISFUNCTION">
   <div class="container py-12 prose prose-invert max-w-3xl">
-    {logs.map((entry) => (
+    {renderedLogs.map((entry) => (
       <section id={`log-${String(entry.data.index).padStart(3,"0")}`} class="mb-16">
         <h2 class="!mt-0 tracking-wide">[{String(entry.data.index).padStart(3,"0")}] {entry.data.title}</h2>
         <entry.Content />
