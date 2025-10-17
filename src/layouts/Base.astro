@@ -16,11 +16,30 @@ const { title = 'LOSS DISFUNCTION', description = 'Music • Story • Universe'
   </head>
   <body class={`min-h-screen ${pageClass}`}>
     <header class="sticky top-0 z-50 backdrop-blur bg-[#050507cc] border-b border-[#191927]">
-      <div class="container flex items-center gap-6 py-3">
+      <div class="container flex items-center justify-between py-3">
         <a href="/" class="flex items-center">
           <img src="/ld_logo.jpg" alt="LOSS DISFUNCTION" class="h-10" />
         </a>
-        <nav class="ml-auto flex gap-4 text-sm">
+        
+        <!-- Mobile menu button -->
+        <button id="mobile-menu-button" class="md:hidden flex flex-col items-center justify-center w-8 h-8 space-y-1">
+          <span class="block w-6 h-0.5 bg-ink transition-all duration-300"></span>
+          <span class="block w-6 h-0.5 bg-ink transition-all duration-300"></span>
+          <span class="block w-6 h-0.5 bg-ink transition-all duration-300"></span>
+        </button>
+        
+        <!-- Desktop navigation -->
+        <nav class="hidden md:flex gap-4 text-sm">
+          <a class="nav-link" href="/about">About</a>
+          <a class="nav-link" href="/lore">System Logs</a>
+          <a class="nav-link" href="/archives">Archives</a>
+          <a class="nav-link" href="https://www.youtube.com/playlist?list=PL7ZOpKNrRFketU5NXyAX-ikvL4FDRLbKx" target="_blank">YouTube</a>
+        </nav>
+      </div>
+      
+      <!-- Mobile navigation menu -->
+      <div id="mobile-menu" class="md:hidden hidden bg-[#050507cc] border-t border-[#191927]">
+        <nav class="container py-4 flex flex-col gap-4 text-sm">
           <a class="nav-link" href="/about">About</a>
           <a class="nav-link" href="/lore">System Logs</a>
           <a class="nav-link" href="/archives">Archives</a>
@@ -34,5 +53,33 @@ const { title = 'LOSS DISFUNCTION', description = 'Music • Story • Universe'
     <footer class="border-t border-[#191927] mt-16">
       <div class="container text-sm text-muted py-6">© {new Date().getFullYear()} LOSS DISFUNCTION</div>
     </footer>
+    
+    <script>
+      // Mobile menu toggle
+      document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+          mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            
+            // Animate hamburger lines
+            const spans = mobileMenuButton.querySelectorAll('span');
+            if (mobileMenu.classList.contains('hidden')) {
+              // Reset to hamburger
+              spans[0].style.transform = 'none';
+              spans[1].style.opacity = '1';
+              spans[2].style.transform = 'none';
+            } else {
+              // Transform to X
+              spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+              spans[1].style.opacity = '0';
+              spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            }
+          });
+        }
+      });
+    </script>
   </body>
 </html>
