@@ -9,6 +9,8 @@
   --cyan: #00ffff;
   --violet: #8b5cf6;
   --ember: #ff3300;
+  --title-red: #d61f2a;
+  --header-orange: #ff6a00;
 }
 
 html, body { 
@@ -22,6 +24,16 @@ html, body {
 .nav-link { 
   @apply text-muted hover:text-cyan transition-colors;
   color: #a3a3b2 !important;
+}
+
+/* Website title styling */
+.site-title {
+  color: var(--title-red) !important;
+}
+
+/* H1 headers on subpages */
+.page-h1 {
+  color: var(--header-orange) !important;
 }
 
 .nav-link:hover {
