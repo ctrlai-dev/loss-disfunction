@@ -1,0 +1,65 @@
+---
+import Base from "@/layouts/Base.astro";
+import BackgroundMist from "@/components/BackgroundMist.astro";
+import { getCollection } from "astro:content";
+
+const archives = (await getCollection("archives")).sort((a, b) => a.data.id.localeCompare(b.data.id));
+const renderedArchives = await Promise.all(archives.map(async (entry) => ({
+  ...entry,
+  Content: (await entry.render()).Content
+})));
+---
+
+
+<Base title="Technical Archives — LOSS DISFUNCTION" description="Declassified CSN papers, recovered logs, and Seed Protocol fragments.">
+  <section class="relative overflow-hidden min-h-screen">
+    <BackgroundMist />
+
+    <div class="container py-12 max-w-4xl relative z-10">
+      <h1 class="text-4xl font-bold text-cyan mb-4">Technical Archives</h1>
+      <p class="text-muted mb-8">Declassified documents, recovered logs, and fragments related to the <span class="text-cyan">C.Y.E.D. / "Seed Protocol"</span>. Treat as unstable source material.</p>
+
+      <div class="space-y-4">
+        {renderedArchives.map((entry) => (
+          <details class="card p-6 group" id={entry.data.slug}>
+            <summary class="flex cursor-pointer items-start justify-between gap-4">
+              <div>
+                <div class="flex flex-wrap items-center gap-2 mb-2">
+                  <span class="text-lg font-semibold text-ink">{entry.data.title}</span>
+                  <span class="badge">{entry.data.year}</span>
+                  <span class={`badge ${entry.data.classification === "RESTRICTED" ? "bg-rose-900/30 text-rose-300 border-rose-700/50" : entry.data.classification === "CONFIDENTIAL" ? "bg-amber-900/30 text-amber-300 border-amber-700/50" : entry.data.classification === "INTERNAL" ? "bg-blue-900/30 text-blue-300 border-blue-700/50" : "bg-emerald-900/30 text-emerald-300 border-emerald-700/50"}`}>
+                    {entry.data.classification}
+                  </span>
+                  <span class="badge bg-emerald-900/30 text-emerald-300 border-emerald-700/50">{entry.data.status}</span>
+                </div>
+                <div class="text-xs text-muted">
+                  ID: {entry.data.id} • Slug: /archives/{entry.data.slug}
+                  {entry.data.integrity && ` • Integrity: ${entry.data.integrity}%`}
+                  {entry.data.recoveredFrom && ` • Recovered from: ${entry.data.recoveredFrom}`}
+                </div>
+                {entry.data.authors && (
+                  <div class="text-xs text-muted mt-1">
+                    Authors: {entry.data.authors.join(", ")}
+                  </div>
+                )}
+              </div>
+              <div class="text-cyan transition-transform group-open:rotate-90">▸</div>
+            </summary>
+
+            <div class="prose prose-invert max-w-none mt-4">
+              <entry.Content />
+              <div class="mt-4 flex items-center gap-3 text-xs text-muted">
+                <span class="badge">Recovered .PDF // Simulated</span>
+                <a href={`#${entry.data.slug}`} class="text-cyan hover:text-violet transition">Permalink</a>
+              </div>
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <footer class="mt-12 border-t border-[#1a1a26] pt-6 text-xs text-muted">
+        Recovered Fileset: <span class="text-cyan">2067–2072</span> • Integrity uncertain • Handle with care.
+      </footer>
+    </div>
+  </section>
+</Base>
