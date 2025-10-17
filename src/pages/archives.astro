@@ -22,11 +22,11 @@ const renderedArchives = await Promise.all(archives.map(async (entry) => ({
   .chip {
     @apply inline-flex items-center rounded px-2 py-0.5 text-[10px] font-mono tracking-wide;
   }
-  .chip-green { @apply bg-emerald-900/30 text-emerald-300 border border-emerald-700/50; }
-  .chip-cyan  { @apply bg-cyan-900/30 text-cyan-300  border border-cyan-700/50; }
-  .chip-amber { @apply bg-amber-900/30 text-amber-300 border border-amber-700/50; }
-  .chip-red   { @apply bg-rose-900/30 text-rose-300   border border-rose-700/50; }
-  .chip-blue  { @apply bg-blue-900/30 text-blue-300   border border-blue-700/50; }
+  .chip-green { @apply bg-emerald-900 bg-opacity-30 text-emerald-300 border border-emerald-700 border-opacity-50; }
+  .chip-cyan  { @apply bg-cyan-900 bg-opacity-30 text-cyan-300 border border-cyan-700 border-opacity-50; }
+  .chip-amber { @apply bg-amber-900 bg-opacity-30 text-amber-300 border border-amber-700 border-opacity-50; }
+  .chip-red   { @apply bg-rose-900 bg-opacity-30 text-rose-300 border border-rose-700 border-opacity-50; }
+  .chip-blue  { @apply bg-blue-900 bg-opacity-30 text-blue-300 border border-blue-700 border-opacity-50; }
 
   /* Flicker for headers (very subtle) */
   @keyframes scanline {
