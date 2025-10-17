@@ -1,0 +1,27 @@
+---
+type: "Diagram"
+title: "Proxy Node Interface Diagram"
+order: 50
+summary: "How the black-orb mediators route human requests through layered stability filters."
+---
+
+A Proxy Node mediates all human-to-AI communication within the Shepherd Grid.  
+Every message passes through a stack of sentiment, compliance, and integrity layers before touching raw computation.
+
+<svg width="600" height="340" viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;margin-top:1rem;">
+  <rect x="20" y="60" width="560" height="200" rx="8" fill="#0c0c18" stroke="#3af0c9" stroke-width="1.5"/>
+  <text x="40" y="90" fill="#3af0c9" font-size="14" font-family="monospace">Human Query</text>
+  <rect x="160" y="110" width="280" height="120" rx="6" fill="#121226" stroke="#6a44ff" stroke-width="1.5"/>
+  <text x="170" y="135" fill="#6a44ff" font-size="12" font-family="monospace">Proxy Node Processing Stack</text>
+  <text x="170" y="160" fill="#ccc" font-size="12" font-family="monospace">1. Sentiment Filter</text>
+  <text x="170" y="180" fill="#ccc" font-size="12" font-family="monospace">2. Compliance Layer</text>
+  <text x="170" y="200" fill="#ccc" font-size="12" font-family="monospace">3. Stability Lattice Check</text>
+  <text x="170" y="220" fill="#ccc" font-size="12" font-family="monospace">4. Encrypted Transmission</text>
+  <circle cx="520" cy="160" r="18" fill="#3af0c9" opacity="0.8"/>
+  <text x="505" y="165" fill="#000" font-size="12" font-family="monospace">AI</text>
+  <line x1="440" y1="170" x2="502" y2="170" stroke="#3af0c9" stroke-width="2" stroke-dasharray="4 3"/>
+  <text x="460" y="155" fill="#3af0c9" font-size="11" font-family="monospace">secure link</text>
+</svg>
+
+Each orb hums faintly at 60Hz — the frequency of human heartbeat entrainment.  
+Unauthorized direct connections trigger a **Graceful Denial**, a polite null response masked as system silence.

@@ -33,4 +33,15 @@ const archives = defineCollection({
   })
 });
 
-export const collections = { logs, archives };
+const about = defineCollection({
+  type: 'content',
+  schema: z.object({
+    type: z.enum(['World', 'Entity', 'Figure', 'Artifact', 'Theme', 'Diagram']),
+    title: z.string(),
+    order: z.number(),
+    summary: z.string(),
+    cover: z.string().optional()
+  })
+});
+
+export const collections = { logs, archives, about };

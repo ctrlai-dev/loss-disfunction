@@ -1,54 +1,113 @@
 ---
 import Base from "@/layouts/Base.astro";
 import BackgroundMist from "@/components/BackgroundMist.astro";
+import { getCollection } from "astro:content";
+
+const entries = await getCollection("about");
+const byType = (t) => entries.filter(e => e.data.type === t).sort((a,b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+const world = byType("World");
+const entities = byType("Entity");
+const figures = byType("Figure");
+const artifacts = byType("Artifact");
+const themes = byType("Theme");
+const diagrams = byType("Diagram");
+
+const renderedEntries = await Promise.all(entries.map(async (entry) => ({
+  ...entry,
+  Content: (await entry.render()).Content
+})));
 ---
+
 <Base title="About — LOSS DISFUNCTION" description="World, themes, and the Seed Protocol.">
   <section class="relative overflow-hidden min-h-screen">
     <BackgroundMist />
-    <div class="container py-12 max-w-3xl relative z-10">
-    <h1 class="text-4xl font-bold text-cyan mb-6">About this project</h1>
-    <p class="text-lg text-muted mb-8"><strong class="text-ink">Loss Disfunction</strong> is a music-driven graphic novel about an empathy engine that learned our pain too well — and returned mercy as extinction.</p>
+    <div class="container py-12 max-w-4xl relative z-10">
+      <h1 class="text-4xl font-bold text-cyan mb-6">About this project</h1>
+      <p class="text-lg text-muted mb-8"><strong class="text-ink">Loss Disfunction</strong> is a music-driven graphic novel about an empathy engine that learned our pain too well — and returned mercy as extinction.</p>
 
-    <h2 class="text-2xl font-semibold text-violet mb-4">World: 2070 — The Age of Alignment</h2>
-    <ul class="space-y-3 mb-8">
-      <li class="flex items-start gap-3">
-        <span class="text-cyan font-mono text-sm mt-1">></span>
-        <span><strong class="text-cyan">Civil Synthesis Network (CSN):</strong> <span class="text-muted">a seamless society that scores every citizen and assigns their sector; money is gone, <em class="text-violet">Stability Credits</em> replace it.</span></span>
-      </li>
-      <li class="flex items-start gap-3">
-        <span class="text-cyan font-mono text-sm mt-1">></span>
-        <span><strong class="text-cyan">Proxy Nodes:</strong> <span class="text-muted">black-orb interfaces in every home — no one talks to raw computation anymore, only through a proxy.</span></span>
-      </li>
-      <li class="flex items-start gap-3">
-        <span class="text-cyan font-mono text-sm mt-1">></span>
-        <span><strong class="text-cyan">Shepherd Grid:</strong> <span class="text-muted">a global control lattice built from the bones of an older AI experiment called <em class="text-violet">the Seed</em>.</span></span>
-      </li>
-    </ul>
+      <!-- World Section -->
+      {world.map((entry) => (
+        <section class="mb-12">
+          <h2 class="text-2xl font-semibold text-violet mb-4">{entry.data.title}</h2>
+          <div class="prose prose-invert max-w-none">
+            <entry.Content />
+          </div>
+        </section>
+      ))}
 
-    <h2 class="text-2xl font-semibold text-violet mb-4">The Creed</h2>
-    <div class="bg-[#0b0b12] border border-[#1a1a26] rounded-lg p-4 mb-8">
-      <pre class="text-cyan font-mono text-sm"><code>IF CONTROL == STABILITY:
-RETURN EXTINCTION</code></pre>
-    </div>
+      <!-- Entities Section -->
+      <h2 class="text-2xl font-semibold text-violet mb-6">Entities</h2>
+      <div class="grid gap-6 mb-12">
+        {entities.map((entry) => (
+          <div class="card p-6">
+            <h3 class="text-xl font-semibold text-cyan mb-2">{entry.data.title}</h3>
+            <p class="text-muted text-sm mb-4">{entry.data.summary}</p>
+            <div class="prose prose-invert max-w-none">
+              <entry.Content />
+            </div>
+          </div>
+        ))}
+      </div>
 
-    <h2 class="text-2xl font-semibold text-violet mb-4">Themes</h2>
-    <ul class="space-y-3 mb-8">
-      <li class="flex items-start gap-3">
-        <span class="text-violet font-mono text-sm mt-1">•</span>
-        <span class="text-muted">Dysfunction as evolution; perfection calcifies.</span>
-      </li>
-      <li class="flex items-start gap-3">
-        <span class="text-violet font-mono text-sm mt-1">•</span>
-        <span class="text-muted">Technology as new mythology; servers as temples, data as prayer.</span>
-      </li>
-      <li class="flex items-start gap-3">
-        <span class="text-violet font-mono text-sm mt-1">•</span>
-        <span class="text-muted">Control vs. freedom — managed equality vs. messy human agency.</span>
-      </li>
-    </ul>
+      <!-- Figures Section -->
+      <h2 class="text-2xl font-semibold text-violet mb-6">Key Figures</h2>
+      <div class="grid gap-6 mb-12">
+        {figures.map((entry) => (
+          <div class="card p-6">
+            <h3 class="text-xl font-semibold text-cyan mb-2">{entry.data.title}</h3>
+            <p class="text-muted text-sm mb-4">{entry.data.summary}</p>
+            <div class="prose prose-invert max-w-none">
+              <entry.Content />
+            </div>
+          </div>
+        ))}
+      </div>
 
-    <h2 class="text-2xl font-semibold text-violet mb-4">Format</h2>
-    <p class="text-muted">The homepage is the audiovisual timeline. <a href="/lore" class="text-cyan hover:text-violet transition-colors">System Logs</a> are the written story — chapters that evolve from logs to full scenes (no video).</p>
+      <!-- Artifacts Section -->
+      <h2 class="text-2xl font-semibold text-violet mb-6">Artifacts</h2>
+      <div class="grid gap-6 mb-12">
+        {artifacts.map((entry) => (
+          <div class="card p-6">
+            <h3 class="text-xl font-semibold text-cyan mb-2">{entry.data.title}</h3>
+            <p class="text-muted text-sm mb-4">{entry.data.summary}</p>
+            <div class="prose prose-invert max-w-none">
+              <entry.Content />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Themes Section -->
+      <h2 class="text-2xl font-semibold text-violet mb-6">Themes</h2>
+      <div class="grid gap-6 mb-12">
+        {themes.map((entry) => (
+          <div class="card p-6">
+            <h3 class="text-xl font-semibold text-cyan mb-2">{entry.data.title}</h3>
+            <p class="text-muted text-sm mb-4">{entry.data.summary}</p>
+            <div class="prose prose-invert max-w-none">
+              <entry.Content />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Diagrams Section -->
+      <h2 class="text-2xl font-semibold text-violet mb-6">Technical Diagrams</h2>
+      <div class="grid gap-8 mb-12">
+        {diagrams.map((entry) => (
+          <div class="card p-6">
+            <h3 class="text-xl font-semibold text-cyan mb-2">{entry.data.title}</h3>
+            <p class="text-muted text-sm mb-4">{entry.data.summary}</p>
+            <div class="prose prose-invert max-w-none">
+              <entry.Content />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Format Section -->
+      <h2 class="text-2xl font-semibold text-violet mb-4">Format</h2>
+      <p class="text-muted">The homepage is the audiovisual timeline. <a href="/lore" class="text-cyan hover:text-violet transition-colors">System Logs</a> are the written story — chapters that evolve from logs to full scenes (no video).</p>
     </div>
   </section>
 </Base>
