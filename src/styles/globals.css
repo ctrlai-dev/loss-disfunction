@@ -167,10 +167,15 @@ html, body {
   left: -10vw;
   width: 120vw;
   height: 140vh;
-  filter: blur(40px) saturate(120%);
+  filter: blur(30px) saturate(150%);
   pointer-events: none; 
   z-index: -1;
   overflow: hidden;
+  background:
+    radial-gradient(40% 70% at 20% 60%, rgba(0,255,255,0.6), transparent 60%),
+    radial-gradient(40% 70% at 40% 30%, rgba(139,92,246,0.6), transparent 60%),
+    radial-gradient(50% 60% at 60% 50%, rgba(0,255,255,0.4), transparent 65%),
+    radial-gradient(35% 55% at 80% 40%, rgba(139,92,246,0.4), transparent 65%);
 }
 
 /* Layer the cyan/violet blobs and shape them into a ribbon-ish S curve */
@@ -179,31 +184,22 @@ html, body {
   position: absolute; 
   inset: 0;
   background:
-    radial-gradient(35% 60% at 25% 65%, rgba(0,255,255,.95), transparent 65%),
-    radial-gradient(35% 60% at 35% 40%, rgba(139,92,246,.95), transparent 65%),
-    radial-gradient(40% 55% at 55% 55%, rgba(0,255,255,.75), transparent 70%),
-    radial-gradient(30% 50% at 70% 35%, rgba(139,92,246,.65), transparent 70%);
+    radial-gradient(40% 70% at 20% 60%, rgba(0,255,255,0.5), transparent 60%),
+    radial-gradient(40% 70% at 40% 30%, rgba(139,92,246,0.5), transparent 60%),
+    radial-gradient(50% 60% at 60% 50%, rgba(0,255,255,0.3), transparent 65%),
+    radial-gradient(35% 55% at 80% 40%, rgba(139,92,246,0.3), transparent 65%);
   mix-blend-mode: screen;
   width: 100%;
   height: 100%;
 }
 
 .mist::before { 
-  transform: rotate(-6deg) translateY(-2%); 
+  transform: rotate(-8deg) translateY(-3%); 
 }
 
 .mist::after { 
-  transform: rotate(8deg) translateY(2%); 
-  opacity: .8; 
-}
-
-/* Optional: soften edges into a "trail" using a mask */
-.mist {
-  -webkit-mask-image:
-    radial-gradient(120% 60% at 20% 70%, #000 20%, transparent 60%),
-    radial-gradient(120% 60% at 80% 30%, #000 20%, transparent 60%);
-  -webkit-mask-composite: source-over;
-  mask-composite: intersect;
+  transform: rotate(10deg) translateY(3%); 
+  opacity: 0.9; 
 }
 
 /* Slow drift animation */
