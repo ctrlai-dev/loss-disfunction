@@ -27,7 +27,6 @@ const archives = defineCollection({
     year: z.number(),
     classification: z.enum(['RESTRICTED', 'CONFIDENTIAL', 'INTERNAL', 'PUBLIC']),
     status: z.string(),
-    slug: z.string(),
     authors: z.array(z.string()).optional(),
     integrity: z.number().optional(),
     recoveredFrom: z.string().optional()
