@@ -7,11 +7,28 @@
 
 [plugins.inputs]
   output_path = "lighthouse-report.html"
-  timeout = 60000
-  urls = ["/", "/about", "/archives", "/lore", "/lexicon"]
+
+[plugins.inputs.settings]
+  timeout = 60000  # 60 seconds timeout
 
 [plugins.inputs.thresholds]
   performance = 0.7
   accessibility = 0.8
   "best-practices" = 0.8
   seo = 0.8
+
+# Define the paths to audit
+[[plugins.inputs.audits]]
+path = "/"
+
+[[plugins.inputs.audits]]
+path = "/about"
+
+[[plugins.inputs.audits]]
+path = "/archives"
+
+[[plugins.inputs.audits]]
+path = "/lore"
+
+[[plugins.inputs.audits]]
+path = "/lexicon"
