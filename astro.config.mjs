@@ -20,7 +20,7 @@ export default defineConfig({
       }
     }
   },
-  experimental: {
-    contentCollectionCache: true,
-  }
+  // experimental: {
+  //   contentCollectionCache: true,
+  // }
 });

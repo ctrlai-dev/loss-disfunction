@@ -3,11 +3,8 @@ import Base from "@/layouts/Base.astro";
 import BackgroundMist from "@/components/BackgroundMist.astro";
 import { getCollection } from "astro:content";
 
+// Load archives collection, sort but don't pre-render
 const archives = (await getCollection("archives")).sort((a, b) => a.data.id.localeCompare(b.data.id));
-const renderedArchives = await Promise.all(archives.map(async (entry) => ({
-  ...entry,
-  Content: (await entry.render()).Content
-})));
 ---
 
 <style>
@@ -68,7 +65,9 @@ const renderedArchives = await Promise.all(archives.map(async (entry) => ({
       <p class="text-muted mb-8">Declassified documents, recovered logs, and fragments related to the <span class="text-cyan">C.Y.E.D. / "Seed Protocol"</span>. Treat as unstable source material.</p>
 
       <div class="space-y-4">
-        {renderedArchives.map((entry) => (
+        {archives.map(async (entry) => {
+          const { Content } = await entry.render();
+          return (
           <details class="group rounded-xl border border-[#1a1a26] bg-[#0b0b12]/80 backdrop-blur p-4 open:shadow-lg open:shadow-cyan-900/10 transition-shadow" id={entry.slug}>
             <summary class="flex cursor-pointer items-start justify-between gap-4">
               <div>
@@ -99,14 +98,15 @@ const renderedArchives = await Promise.all(archives.map(async (entry) => ({
             </summary>
 
             <div class="prose prose-invert max-w-none mt-4">
-              <entry.Content />
+              <Content />
               <div class="mt-4 flex items-center gap-3 text-xs text-muted">
                 <span class="chip chip-cyan">Recovered .PDF // Simulated</span>
                 <a href={`#${entry.slug}`} class="text-cyan hover:text-violet transition">Permalink</a>
               </div>
             </div>
           </details>
-        ))}
+          );
+        })}
       </div>
 
       <footer class="mt-12 border-t border-[#1a1a26] pt-6 text-xs text-muted">
