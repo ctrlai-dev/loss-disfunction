@@ -10,6 +10,7 @@ const { title = 'LOSS DISFUNCTION', description = 'Music • Story • Universe'
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.svg" />
     <link rel="preconnect" href="https://img.youtube.com" />
+    <link rel="dns-prefetch" href="https://music.youtube.com" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
@@ -60,31 +61,46 @@ const { title = 'LOSS DISFUNCTION', description = 'Music • Story • Universe'
     </footer>
     
     <script>
-      // Mobile menu toggle
-      document.addEventListener('DOMContentLoaded', function() {
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
+      // Mobile menu toggle - optimized for performance
+      (function() {
+        'use strict';
+        let mobileMenuButton, mobileMenu;
         
-        if (mobileMenuButton && mobileMenu) {
-          mobileMenuButton.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-            
-            // Animate hamburger lines
-            const spans = mobileMenuButton.querySelectorAll('span');
-            if (mobileMenu.classList.contains('hidden')) {
-              // Reset to hamburger
-              spans[0].style.transform = 'none';
-              spans[1].style.opacity = '1';
-              spans[2].style.transform = 'none';
-            } else {
-              // Transform to X
-              spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-              spans[1].style.opacity = '0';
-              spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
-            }
-          });
+        function init() {
+          mobileMenuButton = document.getElementById('mobile-menu-button');
+          mobileMenu = document.getElementById('mobile-menu');
+          
+          if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', toggleMenu, { passive: true });
+          }
         }
-      });
+        
+        function toggleMenu() {
+          const isHidden = mobileMenu.classList.contains('hidden');
+          mobileMenu.classList.toggle('hidden');
+          
+          // Animate hamburger lines
+          const spans = mobileMenuButton.querySelectorAll('span');
+          if (isHidden) {
+            // Transform to X
+            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+            spans[1].style.opacity = '0';
+            spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+          } else {
+            // Reset to hamburger
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+          }
+        }
+        
+        // Use requestIdleCallback if available, otherwise setTimeout
+        if (window.requestIdleCallback) {
+          requestIdleCallback(init);
+        } else {
+          setTimeout(init, 1);
+        }
+      })();
     </script>
   </body>
 </html>
