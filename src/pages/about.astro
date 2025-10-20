@@ -3,13 +3,9 @@ import Base from "@/layouts/Base.astro";
 import BackgroundMist from "@/components/BackgroundMist.astro";
 import { getCollection } from "astro:content";
 
+// Only load about collection, render only what we need
 const entries = await getCollection("about");
-const renderedEntries = await Promise.all(entries.map(async (entry) => ({
-  ...entry,
-  Content: (await entry.render()).Content
-})));
-
-const byType = (t) => renderedEntries.filter(e => e.data.type === t).sort((a,b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+const byType = (t) => entries.filter(e => e.data.type === t).sort((a,b) => (a.data.order ?? 0) - (b.data.order ?? 0));
 const world = byType("World");
 const entities = byType("Entity");
 const figures = byType("Figure");
