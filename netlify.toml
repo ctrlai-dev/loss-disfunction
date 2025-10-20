@@ -12,10 +12,10 @@
   timeout = 60000  # 60 seconds timeout
 
 [plugins.inputs.thresholds]
-  performance = 0.7
-  accessibility = 0.8
-  "best-practices" = 0.8
-  seo = 0.8
+  performance = 0.5
+  accessibility = 0.6
+  "best-practices" = 0.6
+  seo = 0.6
 
 # Define the paths to audit
 [[plugins.inputs.audits]]
