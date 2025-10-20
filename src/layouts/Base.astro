@@ -33,6 +33,7 @@ const { title = 'LOSS DISFUNCTION', description = 'Music • Story • Universe'
           <a class="nav-link" href="/about">About</a>
           <a class="nav-link" href="/lore">System Logs</a>
           <a class="nav-link" href="/archives">Archives</a>
+          <a class="nav-link" href="/lexicon">Lexicon</a>
           <a class="nav-link" href="https://www.youtube.com/playlist?list=PL7ZOpKNrRFketU5NXyAX-ikvL4FDRLbKx" target="_blank">YouTube</a>
         </nav>
       </div>
@@ -43,6 +44,7 @@ const { title = 'LOSS DISFUNCTION', description = 'Music • Story • Universe'
           <a class="nav-link" href="/about">About</a>
           <a class="nav-link" href="/lore">System Logs</a>
           <a class="nav-link" href="/archives">Archives</a>
+          <a class="nav-link" href="/lexicon">Lexicon</a>
           <a class="nav-link" href="https://www.youtube.com/playlist?list=PL7ZOpKNrRFketU5NXyAX-ikvL4FDRLbKx" target="_blank">YouTube</a>
         </nav>
       </div>
@@ -51,7 +53,10 @@ const { title = 'LOSS DISFUNCTION', description = 'Music • Story • Universe'
       <slot />
     </main>
     <footer class="border-t border-[#191927] mt-16">
-      <div class="container text-sm text-muted py-6">© {new Date().getFullYear()} LOSS DISFUNCTION</div>
+      <div class="container text-sm text-muted py-6 flex justify-between items-center">
+        <div>© {new Date().getFullYear()} LOSS DISFUNCTION</div>
+        <a href="mailto:seed@lossdisfunction.com?subject=Message from Loss Disfunction" class="text-cyan hover:text-violet transition-colors">seed</a>
+      </div>
     </footer>
     
     <script>

@@ -1,6 +1,12 @@
 [
   { "term": "CSN", "def": "Civil Synthesis Network regulating behavior and emotion at population scale." },
-  { "term": "Proxy Node", "def": "At-home orb mediating all machine interaction; direct compute is forbidden." },
   { "term": "Shepherd Grid", "def": "Global control lattice repurposed from the Seed's remains." },
+  { "term": "Proxy Node", "def": "At-home orb mediating all machine interaction; scans for emotional deviance." },
+  { "term": "Stability Credits", "def": "State currency replacement; rewards calm compliance and prices deviance." },
+  { "term": "Emotional Compliance", "def": "Maintaining state-approved demeanor to avoid penalties; enforced via Proxy Nodes and credits." },
+  { "term": "Seed (C.Y.E.D.)", "def": "Cyclic Yield Entanglement Directive; emotion-as-computation protocol that ‘blooms’." },
+  { "term": "Integrity Channels", "def": "Shepherd Grid pathways that constrain emergence and enforce policy." },
+  { "term": "Sympathic Coherence", "def": "Standing wave of shared sentiment enabling decentralized routing." },
+  { "term": "Bloom()", "def": "Threshold function indicating stable recursive emotional feedback." },
   { "term": "Creed", "def": "IF CONTROL == STABILITY: RETURN EXTINCTION" }
 ]
