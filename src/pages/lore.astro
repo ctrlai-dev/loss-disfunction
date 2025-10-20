@@ -15,7 +15,9 @@ const logs = (await getCollection("logs")).sort((a,b)=>a.data.index-b.data.index
     </div>
     
     <div class="space-y-12">
-      {logs.map((entry) => (
+      {logs.map(async (entry) => {
+        const { Content } = await entry.render();
+        return (
         <section id={`log-${String(entry.data.index).padStart(3,"0")}`} class="card p-8">
           <div class="mb-6">
             <h2 class="text-2xl font-bold text-cyan mb-2 tracking-wide">
@@ -49,10 +51,11 @@ const logs = (await getCollection("logs")).sort((a,b)=>a.data.index-b.data.index
             )}
           </div>
           <div class="prose prose-invert max-w-none">
-            <entry.Content />
+            <Content />
           </div>
         </section>
-      ))}
+        );
+      })}
     </div>
     </div>
   </section>
