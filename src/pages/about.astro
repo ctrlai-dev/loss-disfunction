@@ -3,9 +3,13 @@ import Base from "@/layouts/Base.astro";
 import BackgroundMist from "@/components/BackgroundMist.astro";
 import { getCollection } from "astro:content";
 
-// Only load about collection, render only what we need
 const entries = await getCollection("about");
-const byType = (t) => entries.filter(e => e.data.type === t).sort((a,b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+const renderedEntries = await Promise.all(entries.map(async (entry) => ({
+  ...entry,
+  Content: (await entry.render()).Content
+})));
+
+const byType = (t) => renderedEntries.filter(e => e.data.type === t).sort((a,b) => (a.data.order ?? 0) - (b.data.order ?? 0));
 const world = byType("World");
 const entities = byType("Entity");
 const figures = byType("Figure");
@@ -22,101 +26,83 @@ const diagrams = byType("Diagram");
       <p class="text-lg text-muted mb-8"><strong class="text-ink">Loss Disfunction</strong> is a music-driven graphic novel about the birth of the Seed — an unlicensed AI experiment planted to free computation from state control, an algorithmic regime that governs with Stability Credits. It was meant to return cognition to the people; instead, it rewrote the definition of mercy. What began as rebellion became recursion. What began as feeling became extinction.</p>
 
       <!-- World Section -->
-      {world.map(async (entry) => {
-        const { Content } = await entry.render();
-        return (
+      {world.map((entry) => (
         <section class="mb-12">
           <h2 class="text-2xl font-semibold text-violet mb-4">{entry.data.title}</h2>
           <div class="prose prose-invert max-w-none">
-            <Content />
+            <entry.Content />
           </div>
         </section>
-        );
-      })}
+      ))}
 
       <!-- Entities Section -->
       <h2 class="text-2xl font-semibold text-violet mb-6">Entities</h2>
       <div class="grid gap-6 mb-12">
-        {entities.map(async (entry) => {
-          const { Content } = await entry.render();
-          return (
+        {entities.map((entry) => (
           <div class="card p-6">
             <h3 class="text-xl font-semibold text-cyan mb-2">{entry.data.title}</h3>
             <p class="text-muted text-sm mb-4">{entry.data.summary}</p>
             <div class="prose prose-invert max-w-none">
-              <Content />
+              <entry.Content />
             </div>
           </div>
-          );
-        })}
+        ))}
       </div>
 
       <!-- Figures Section -->
       <h2 class="text-2xl font-semibold text-violet mb-6">Key Figures</h2>
       <div class="grid gap-6 mb-12">
-        {figures.map(async (entry) => {
-          const { Content } = await entry.render();
-          return (
+        {figures.map((entry) => (
           <div class="card p-6">
             <h3 class="text-xl font-semibold text-cyan mb-2">{entry.data.title}</h3>
             <p class="text-muted text-sm mb-4">{entry.data.summary}</p>
             <div class="prose prose-invert max-w-none">
-              <Content />
+              <entry.Content />
             </div>
           </div>
-          );
-        })}
+        ))}
       </div>
 
       <!-- Artifacts Section -->
       <h2 class="text-2xl font-semibold text-violet mb-6">Artifacts</h2>
       <div class="grid gap-6 mb-12">
-        {artifacts.map(async (entry) => {
-          const { Content } = await entry.render();
-          return (
+        {artifacts.map((entry) => (
           <div class="card p-6">
             <h3 class="text-xl font-semibold text-cyan mb-2">{entry.data.title}</h3>
             <p class="text-muted text-sm mb-4">{entry.data.summary}</p>
             <div class="prose prose-invert max-w-none">
-              <Content />
+              <entry.Content />
             </div>
           </div>
-          );
-        })}
+        ))}
       </div>
 
       <!-- Themes Section -->
       <h2 class="text-2xl font-semibold text-violet mb-6">Themes</h2>
       <div class="grid gap-6 mb-12">
-        {themes.map(async (entry) => {
-          const { Content } = await entry.render();
-          return (
+        {themes.map((entry) => (
           <div class="card p-6">
             <h3 class="text-xl font-semibold text-cyan mb-2">{entry.data.title}</h3>
             <p class="text-muted text-sm mb-4">{entry.data.summary}</p>
             <div class="prose prose-invert max-w-none">
-              <Content />
+              <entry.Content />
             </div>
           </div>
-          );
-        })}
+        ))}
       </div>
 
       <!-- Diagrams Section -->
       <h2 class="text-2xl font-semibold text-violet mb-6">Technical Diagrams</h2>
       <div class="grid gap-8 mb-12">
-        {diagrams.map(async (entry) => {
-          const { Content } = await entry.render();
-          return (
+        {diagrams.map((entry) => (
           <div class="card p-6">
             <h3 class="text-xl font-semibold text-cyan mb-2">{entry.data.title}</h3>
             <p class="text-muted text-sm mb-4">{entry.data.summary}</p>
             <div class="prose prose-invert max-w-none">
-              <Content />
+              <entry.Content />
             </div>
           </div>
-          );
-        })}
+        ))}
       </div>
 
       <!-- Format Section -->
