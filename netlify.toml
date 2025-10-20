@@ -19,16 +19,16 @@
 
 # Define the paths to audit
 [[plugins.inputs.audits]]
-path = "https://lossdisfunction.com/"
+path = "/"
 
 [[plugins.inputs.audits]]
-path = "https://lossdisfunction.com/about"
+path = "/about"
 
 [[plugins.inputs.audits]]
-path = "https://lossdisfunction.com/archives"
+path = "/archives"
 
 [[plugins.inputs.audits]]
-path = "https://lossdisfunction.com/lore"
+path = "/lore"
 
 [[plugins.inputs.audits]]
-path = "https://lossdisfunction.com/lexicon"
+path = "/lexicon"
