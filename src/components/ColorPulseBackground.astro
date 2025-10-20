@@ -1,6 +1,13 @@
 <style>
   .pulse {
-    position: absolute; inset: -20vh -10vw; filter: blur(90px); opacity: .25; z-index: -1;
+    position: absolute; 
+    top: -10vh; 
+    left: -5vw; 
+    right: -5vw; 
+    bottom: -10vh; 
+    filter: blur(90px); 
+    opacity: .25; 
+    z-index: -1;
     background: radial-gradient(40% 40% at 30% 50%, var(--cyan), transparent 70%),
                 radial-gradient(40% 40% at 70% 50%, var(--violet), transparent 70%);
     animation: drift 18s ease-in-out infinite alternate;
