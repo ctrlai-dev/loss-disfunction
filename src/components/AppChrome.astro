@@ -1,0 +1,39 @@
+---
+---
+<div class="grid grid-cols-[260px_1fr] grid-rows-[56px_1fr] min-h-screen">
+  <header class="col-span-2 h-14 flex items-center justify-between px-4 border-b border-white/10 bg-black/30 backdrop-blur">
+    <a href="/" class="font-semibold tracking-wide">LOSS DISFUNCTION</a>
+    <nav class="text-sm space-x-4">
+      <a href="/universe">Universe</a>
+      <a href="/lore">Logs</a>
+      <a href="/archives">Archives</a>
+      <a href="/lexicon">Lexicon</a>
+      <a href="/manifest">Manifest</a>
+    </nav>
+  </header>
+
+  <aside class="border-r border-white/10 bg-black/20 p-3">
+    <div class="text-xs uppercase opacity-70 mb-2">Universe</div>
+    <ul class="space-y-1 text-sm">
+      <li><a href="/universe" class="block px-2 py-1 rounded hover:bg-white/5">Dashboard</a></li>
+      <li class="mt-2 text-xs uppercase opacity-70">Encyclopedia</li>
+      <li><a href="/encyclopedia?type=character" class="block px-2 py-1 rounded hover:bg-white/5">Characters</a></li>
+      <li><a href="/encyclopedia?type=faction" class="block px-2 py-1 rounded hover:bg-white/5">Factions</a></li>
+      <li><a href="/encyclopedia?type=technology" class="block px-2 py-1 rounded hover:bg-white/5">Technology</a></li>
+      <li><a href="/encyclopedia?type=location" class="block px-2 py-1 rounded hover:bg-white/5">Locations</a></li>
+      <li><a href="/encyclopedia?type=artifact" class="block px-2 py-1 rounded hover:bg-white/5">Artifacts</a></li>
+      <li><a href="/encyclopedia?type=theme" class="block px-2 py-1 rounded hover:bg-white/5">Themes</a></li>
+
+      <li class="mt-4 text-xs uppercase opacity-70">Canon</li>
+      <li><a href="/lore" class="block px-2 py-1 rounded hover:bg-white/5">System Logs</a></li>
+      <li><a href="/archives" class="block px-2 py-1 rounded hover:bg-white/5">Technical Archives</a></li>
+      <li><a href="/lexicon" class="block px-2 py-1 rounded hover:bg-white/5">Lexicon</a></li>
+    </ul>
+  </aside>
+
+  <main class="p-6">
+    <slot />
+  </main>
+</div>
+
+
