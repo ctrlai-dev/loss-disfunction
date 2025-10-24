@@ -2,64 +2,25 @@
 import AppShell from "@/layouts/AppShell.astro";
 import BackgroundMist from "@/components/BackgroundMist.astro";
 import { getCollection } from "astro:content";
-
-// Load archives collection, sort but don't pre-render
 const archives = (await getCollection("archives")).sort((a, b) => a.data.id.localeCompare(b.data.id));
 ---
-
 <style>
-  /* Subtle console grid + glow */
-  .grid-bg {
-    background-image:
-      radial-gradient(transparent 1px, rgba(12,12,18,0.4) 1px),
-      radial-gradient(transparent 1px, rgba(12,12,18,0.4) 1px);
-    background-size: 24px 24px, 24px 24px;
-    background-position: 0 0, 12px 12px;
-  }
-  .chip {
-    @apply inline-flex items-center rounded px-2 py-0.5 text-[10px] font-mono tracking-wide;
-  }
-  .chip-green { 
-    background-color: rgba(20, 83, 45, 0.3);
-    color: rgb(134, 239, 172);
-    border: 1px solid rgba(21, 128, 61, 0.5);
-  }
-  .chip-cyan { 
-    background-color: rgba(19, 78, 74, 0.3);
-    color: rgb(94, 234, 212);
-    border: 1px solid rgba(15, 118, 110, 0.5);
-  }
-  .chip-amber { 
-    background-color: rgba(113, 63, 18, 0.3);
-    color: rgb(252, 211, 77);
-    border: 1px solid rgba(180, 83, 9, 0.5);
-  }
-  .chip-red { 
-    background-color: rgba(127, 29, 29, 0.3);
-    color: rgb(252, 165, 165);
-    border: 1px solid rgba(185, 28, 28, 0.5);
-  }
-  .chip-blue { 
-    background-color: rgba(30, 58, 138, 0.3);
-    color: rgb(147, 197, 253);
-    border: 1px solid rgba(29, 78, 216, 0.5);
-  }
-
-  /* Flicker for headers (very subtle) */
-  @keyframes scanline {
-    0%, 100% { opacity: 1; }
-    50% { opacity: .92; }
-  }
+  .grid-bg { background-image: radial-gradient(transparent 1px, rgba(12,12,18,0.4) 1px), radial-gradient(transparent 1px, rgba(12,12,18,0.4) 1px); background-size: 24px 24px, 24px 24px; background-position: 0 0, 12px 12px; }
+  .chip { @apply inline-flex items-center rounded px-2 py-0.5 text-[10px] font-mono tracking-wide; }
+  .chip-green { background-color: rgba(20,83,45,0.3); color: rgb(134,239,172); border: 1px solid rgba(21,128,61,0.5); }
+  .chip-cyan { background-color: rgba(19,78,74,0.3); color: rgb(94,234,212); border: 1px solid rgba(15,118,110,0.5); }
+  .chip-amber { background-color: rgba(113,63,18,0.3); color: rgb(252,211,77); border: 1px solid rgba(180,83,9,0.5); }
+  .chip-red { background-color: rgba(127,29,29,0.3); color: rgb(252,165,165); border: 1px solid rgba(185,28,28,0.5); }
+  .chip-blue { background-color: rgba(30,58,138,0.3); color: rgb(147,197,253); border: 1px solid rgba(29,78,216,0.5); }
+  @keyframes scanline { 0%,100% { opacity: 1; } 50% { opacity: .92; } }
   .flicker { animation: scanline 4s linear infinite; }
   details[open] summary .caret { transform: rotate(90deg); }
   summary::-webkit-details-marker { display: none; }
 </style>
 
-
-<AppShell title="Technical Archives — LOSS DISFUNCTION">
+<AppShell title="Technical Archives — LOSS DISFUNCTION" sidebar={true}>
   <section class="relative overflow-hidden min-h-screen grid-bg">
     <BackgroundMist />
-
     <div class="container relative z-10 mx-auto max-w-4xl py-12">
       <h1 class="text-4xl font-bold page-h1 mb-2 flicker">Technical Archives</h1>
       <p class="text-muted mb-8">Declassified documents, recovered logs, and fragments related to the <span class="text-cyan">C.Y.E.D. / "Seed Protocol"</span>. Treat as unstable source material.</p>
@@ -84,14 +45,10 @@ const archives = (await getCollection("archives")).sort((a, b) => a.data.id.loca
                   <span class="chip chip-green">{entry.data.status}</span>
                 </div>
                 <div class="text-xs text-muted mt-1">
-                  ID: {entry.data.id} • Slug: /archives/{entry.slug}
-                  {entry.data.integrity && ` • Integrity: ${entry.data.integrity}%`}
-                  {entry.data.recoveredFrom && ` • Recovered from: ${entry.data.recoveredFrom}`}
+                  ID: {entry.data.id} • Slug: /universe/archives/{entry.slug}
                 </div>
                 {entry.data.authors && (
-                  <div class="text-xs text-muted mt-1">
-                    Authors: {entry.data.authors.join(", ")}
-                  </div>
+                  <div class="text-xs text-muted mt-1">Authors: {entry.data.authors.join(", ")}</div>
                 )}
               </div>
               <div class="caret mt-1 text-cyan transition-transform">▸</div>
@@ -99,19 +56,13 @@ const archives = (await getCollection("archives")).sort((a, b) => a.data.id.loca
 
             <div class="prose prose-invert max-w-none mt-4">
               <Content />
-              <div class="mt-4 flex items-center gap-3 text-xs text-muted">
-                <span class="chip chip-cyan">Recovered .PDF // Simulated</span>
-                <a href={`#${entry.slug}`} class="text-cyan hover:text-violet transition">Permalink</a>
-              </div>
             </div>
           </details>
           );
         })}
       </div>
-
-      <footer class="mt-12 border-t border-[#1a1a26] pt-6 text-xs text-muted">
-        Recovered Fileset: <span class="text-cyan">2067–2072</span> • Integrity uncertain • Handle with care.
-      </footer>
     </div>
   </section>
 </AppShell>
+
+

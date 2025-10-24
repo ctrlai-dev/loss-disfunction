@@ -7,6 +7,12 @@ const { title = "LOSS DISFUNCTION", description = 'Music • Story • Universe'
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="icon" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/favicon-64x64.png" sizes="64x64" />
+  <link rel="icon" type="image/png" href="/favicon-128x128.png" sizes="128x128" />
+  <meta name="theme-color" content="#0b0b12" />
   <link rel="preconnect" href="https://img.youtube.com" />
   <link rel="dns-prefetch" href="https://music.youtube.com" />
   <meta property="og:title" content={title} />
@@ -20,9 +26,6 @@ const { title = "LOSS DISFUNCTION", description = 'Music • Story • Universe'
       <a href="/" class="font-semibold tracking-wide">LOSS DISFUNCTION</a>
       <nav class="text-sm space-x-4">
         <a href="/universe" class="hover:underline">Universe</a>
-        <a href="/lore" class="hover:underline">Logs</a>
-        <a href="/archives" class="hover:underline">Archives</a>
-        <a href="/lexicon" class="hover:underline">Lexicon</a>
         <a href="/about" class="hover:underline">About</a>
       </nav>
     </div>
@@ -41,6 +44,10 @@ const { title = "LOSS DISFUNCTION", description = 'Music • Story • Universe'
           <li><a href="/encyclopedia?type=location" class="block px-2 py-1 rounded hover:bg-white/5">Locations</a></li>
           <li><a href="/encyclopedia?type=artifact" class="block px-2 py-1 rounded hover:bg-white/5">Artifacts</a></li>
           <li><a href="/encyclopedia?type=theme" class="block px-2 py-1 rounded hover:bg-white/5">Themes</a></li>
+          <li class="mt-4 text-xs uppercase opacity-70">Canon</li>
+          <li><a href="/universe/logs" class="block px-2 py-1 rounded hover:bg-white/5">System Logs</a></li>
+          <li><a href="/universe/archives" class="block px-2 py-1 rounded hover:bg-white/5">Technical Archives</a></li>
+          <li><a href="/universe/lexicon" class="block px-2 py-1 rounded hover:bg-white/5">Lexicon</a></li>
         </ul>
       </aside>
     ) : null}

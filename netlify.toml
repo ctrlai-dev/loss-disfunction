@@ -7,6 +7,25 @@
 
 [[plugins]]
   package = "@netlify/plugin-lighthouse"
+[redirects]
+
+[[redirects]]
+  from = "/lore"
+  to = "/universe/logs"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/archives"
+  to = "/universe/archives"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/lexicon"
+  to = "/universe/lexicon"
+  status = 301
+  force = true
 
 [plugins.inputs]
   output_path = "lighthouse-report.html"
