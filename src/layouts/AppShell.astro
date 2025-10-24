@@ -1,5 +1,4 @@
 import '../styles/globals.css';
-import AppChrome from '@/components/AppChrome.astro';
 const { title = "LOSS DISFUNCTION", description = 'Music • Story • Universe' } = Astro.props;
 ---
 
@@ -14,10 +13,9 @@ const { title = "LOSS DISFUNCTION", description = 'Music • Story • Universe'
   <meta property="og:type" content="website" />
 </astro:head>
 
-<div class="min-h-screen bg-[#0b0b12] text-[#e5e7eb]">
-  <AppChrome>
-    <slot />
-  </AppChrome>
+<div class="min-h-screen bg-[#0b0b12] text-[#e5e7eb] p-6">
+  <slot />
+  
 </div>
 
 
