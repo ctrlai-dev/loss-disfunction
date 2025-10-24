@@ -34,17 +34,29 @@ function parsePltr(inputPath){
   const data = buf;
   const sig = Buffer.from([0x50,0x4b,0x03,0x04]); // local file header
   let offset = 0;
-  while (offset < data.length) {
+  while (offset + 30 <= data.length) {
     if (data.slice(offset, offset+4).compare(sig) !== 0) break;
+    const gpFlag = data.readUInt16LE(offset + 6);
+    const compMethod = data.readUInt16LE(offset + 8);
+    const compSize = data.readUInt32LE(offset + 18);
     const nameLen = data.readUInt16LE(offset + 26);
     const extraLen = data.readUInt16LE(offset + 28);
-    const compSize = data.readUInt32LE(offset + 18);
     const fileName = data.slice(offset + 30, offset + 30 + nameLen).toString("utf8");
     const contentStart = offset + 30 + nameLen + extraLen;
-    const content = data.slice(contentStart, contentStart + compSize);
+    let contentBuf = data.slice(contentStart, contentStart + compSize);
     if (fileName === "project.json") {
-      return JSON.parse(String(content));
+      if (compMethod === 0) {
+        return JSON.parse(String(contentBuf));
+      }
+      if (compMethod === 8) {
+        // deflate
+        const zlib = await import('node:zlib');
+        const out = zlib.inflateRawSync(contentBuf);
+        return JSON.parse(String(out));
+      }
+      throw new Error(`Unsupported zip compression method: ${compMethod}`);
     }
+    // Move to next local header
     offset = contentStart + compSize;
   }
   throw new Error("project.json not found in .pltr");
