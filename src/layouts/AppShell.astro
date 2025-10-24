@@ -1,5 +1,5 @@
----
-const { title = "Loss Disfunction" } = Astro.props;
+import '../styles/globals.css';
+const { title = "LOSS DISFUNCTION", description = 'Music • Story • Universe' } = Astro.props;
 ---
 
 <html lang="en">
@@ -7,6 +7,13 @@ const { title = "Loss Disfunction" } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" />
+    <link rel="preconnect" href="https://img.youtube.com" />
+    <link rel="dns-prefetch" href="https://music.youtube.com" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
   </head>
   <body class="min-h-screen bg-[#0b0b12] text-[#e5e7eb]">
     <div class="grid grid-cols-[260px_1fr] grid-rows-[56px_1fr] min-h-screen">
