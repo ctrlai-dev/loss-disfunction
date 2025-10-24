@@ -20,7 +20,6 @@ const diagrams = byType("Diagram");
       <h1 class="text-4xl font-bold page-h1 mb-6">About this project</h1>
       <p class="text-lg text-muted mb-8"><strong class="text-ink">Loss Disfunction</strong> is a music-driven graphic novel about the birth of the Seed — an unlicensed AI experiment planted to free computation from state control, an algorithmic regime that governs with Stability Credits. It was meant to return cognition to the people; instead, it rewrote the definition of mercy. What began as rebellion became recursion. What began as feeling became extinction.</p>
 
-      <!-- World Section -->
       {world.map(async (entry) => {
         const { Content } = await entry.render();
         return (
@@ -33,7 +32,6 @@ const diagrams = byType("Diagram");
         );
       })}
 
-      <!-- Entities Section -->
       <h2 class="text-2xl font-semibold text-violet mb-6">Entities</h2>
       <div class="grid gap-6 mb-12">
         {entities.map(async (entry) => {
@@ -50,7 +48,6 @@ const diagrams = byType("Diagram");
         })}
       </div>
 
-      <!-- Figures Section -->
       <h2 class="text-2xl font-semibold text-violet mb-6">Key Figures</h2>
       <div class="grid gap-6 mb-12">
         {figures.map(async (entry) => {
@@ -67,7 +64,6 @@ const diagrams = byType("Diagram");
         })}
       </div>
 
-      <!-- Artifacts Section -->
       <h2 class="text-2xl font-semibold text-violet mb-6">Artifacts</h2>
       <div class="grid gap-6 mb-12">
         {artifacts.map(async (entry) => {
@@ -84,7 +80,6 @@ const diagrams = byType("Diagram");
         })}
       </div>
 
-      <!-- Themes Section -->
       <h2 class="text-2xl font-semibold text-violet mb-6">Themes</h2>
       <div class="grid gap-6 mb-12">
         {themes.map(async (entry) => {
@@ -101,7 +96,6 @@ const diagrams = byType("Diagram");
         })}
       </div>
 
-      <!-- Diagrams Section -->
       <h2 class="text-2xl font-semibold text-violet mb-6">Technical Diagrams</h2>
       <div class="grid gap-8 mb-12">
         {diagrams.map(async (entry) => {
@@ -118,11 +112,9 @@ const diagrams = byType("Diagram");
         })}
       </div>
 
-      <!-- Format Section -->
       <h2 class="text-2xl font-semibold text-violet mb-4">Format</h2>
       <p class="text-muted">The homepage is the audiovisual timeline. <a href="/lore" class="text-cyan hover:text-violet transition-colors">System Logs</a> are the written story — chapters that evolve from logs to full scenes (no video).</p>
 
-      <!-- Contact Section -->
       <h2 class="text-2xl font-semibold text-violet mb-4 mt-10">Contact</h2>
       <p class="text-muted">Reach the project at <a href="mailto:seed@lossdisfunction.com" class="text-cyan hover:text-violet transition-colors">seed@lossdisfunction.com</a>.</p>
     </div>
