@@ -1,4 +1,6 @@
 import AppShell from "@/layouts/AppShell.astro";
+import AboutEntrySection from "@/components/AboutEntrySection.astro";
+import AboutEntryCard from "@/components/AboutEntryCard.astro";
 import BackgroundMist from "@/components/BackgroundMist.astro";
 import { getCollection } from "astro:content";
 
@@ -20,96 +22,31 @@ const diagrams = byType("Diagram");
       <h1 class="text-4xl font-bold page-h1 mb-6">About this project</h1>
       <p class="text-lg text-muted mb-8"><strong class="text-ink">Loss Disfunction</strong> is a music-driven graphic novel about the birth of the Seed — an unlicensed AI experiment planted to free computation from state control, an algorithmic regime that governs with Stability Credits. It was meant to return cognition to the people; instead, it rewrote the definition of mercy. What began as rebellion became recursion. What began as feeling became extinction.</p>
 
-      {world.map(async (entry) => {
-        const { Content } = await entry.render();
-        return (
-        <section class="mb-12">
-          <h2 class="text-2xl font-semibold text-violet mb-4">{entry.data.title}</h2>
-          <div class="prose prose-invert max-w-none">
-            <Content />
-          </div>
-        </section>
-        );
-      })}
+      {world.map((entry) => <AboutEntrySection entry={entry} />)}
 
       <h2 class="text-2xl font-semibold text-violet mb-6">Entities</h2>
       <div class="grid gap-6 mb-12">
-        {entities.map(async (entry) => {
-          const { Content } = await entry.render();
-          return (
-          <div class="card p-6">
-            <h3 class="text-xl font-semibold text-cyan mb-2">{entry.data.title}</h3>
-            <p class="text-muted text-sm mb-4">{entry.data.summary}</p>
-            <div class="prose prose-invert max-w-none">
-              <Content />
-            </div>
-          </div>
-          );
-        })}
+        {entities.map((entry) => <AboutEntryCard entry={entry} />)}
       </div>
 
       <h2 class="text-2xl font-semibold text-violet mb-6">Key Figures</h2>
       <div class="grid gap-6 mb-12">
-        {figures.map(async (entry) => {
-          const { Content } = await entry.render();
-          return (
-          <div class="card p-6">
-            <h3 class="text-xl font-semibold text-cyan mb-2">{entry.data.title}</h3>
-            <p class="text-muted text-sm mb-4">{entry.data.summary}</p>
-            <div class="prose prose-invert max-w-none">
-              <Content />
-            </div>
-          </div>
-          );
-        })}
+        {figures.map((entry) => <AboutEntryCard entry={entry} />)}
       </div>
 
       <h2 class="text-2xl font-semibold text-violet mb-6">Artifacts</h2>
       <div class="grid gap-6 mb-12">
-        {artifacts.map(async (entry) => {
-          const { Content } = await entry.render();
-          return (
-          <div class="card p-6">
-            <h3 class="text-xl font-semibold text-cyan mb-2">{entry.data.title}</h3>
-            <p class="text-muted text-sm mb-4">{entry.data.summary}</p>
-            <div class="prose prose-invert max-w-none">
-              <Content />
-            </div>
-          </div>
-          );
-        })}
+        {artifacts.map((entry) => <AboutEntryCard entry={entry} />)}
       </div>
 
       <h2 class="text-2xl font-semibold text-violet mb-6">Themes</h2>
       <div class="grid gap-6 mb-12">
-        {themes.map(async (entry) => {
-          const { Content } = await entry.render();
-          return (
-          <div class="card p-6">
-            <h3 class="text-xl font-semibold text-cyan mb-2">{entry.data.title}</h3>
-            <p class="text-muted text-sm mb-4">{entry.data.summary}</p>
-            <div class="prose prose-invert max-w-none">
-              <Content />
-            </div>
-          </div>
-          );
-        })}
+        {themes.map((entry) => <AboutEntryCard entry={entry} />)}
       </div>
 
       <h2 class="text-2xl font-semibold text-violet mb-6">Technical Diagrams</h2>
       <div class="grid gap-8 mb-12">
-        {diagrams.map(async (entry) => {
-          const { Content } = await entry.render();
-          return (
-          <div class="card p-6">
-            <h3 class="text-xl font-semibold text-cyan mb-2">{entry.data.title}</h3>
-            <p class="text-muted text-sm mb-4">{entry.data.summary}</p>
-            <div class="prose prose-invert max-w-none">
-              <Content />
-            </div>
-          </div>
-          );
-        })}
+        {diagrams.map((entry) => <AboutEntryCard entry={entry} />)}
       </div>
 
       <h2 class="text-2xl font-semibold text-violet mb-4">Format</h2>
