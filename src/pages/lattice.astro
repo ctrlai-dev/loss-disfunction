@@ -6,7 +6,7 @@
 
 const title = "THE LATTICE // ACCESS TERMINAL";
 const description = "Initialization pending. World reconstruction in progress — the neural archive for Loss Disfunction.";
-const image = "/assets/lattice-node-frame.jpg"; // set to your public path, e.g. "/lattice-in-the-frame.jpg"
+const image = "/lattice-in-the-frame.jpg"; // set to your public path (e.g., "/lattice-in-the-frame.jpg")
 const url = "https://lossdisfunction.com/lattice";
 ---
 
@@ -189,6 +189,17 @@ const url = "https://lossdisfunction.com/lattice";
       .btn.orange { border-color: rgba(255,122,24,.35); background: linear-gradient(180deg, rgba(255,122,24,.14), rgba(255,122,24,.05)); }
       .btn.orange:hover { box-shadow: 0 10px 16px rgba(255,122,24,.16); border-color: rgba(255,122,24,.6); }
 
+      /* Subscribe modal */
+      .backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.55); display: none; align-items: center; justify-content: center; z-index: 40; }
+      .backdrop.show { display: flex; }
+      .modal { width: min(560px, 92vw); border-radius: 16px; border: 1px solid rgba(255,255,255,.06); background: linear-gradient(180deg, rgba(14,19,25,.95), rgba(10,12,15,.92)); box-shadow: var(--shadow), inset 0 0 0 1px rgba(255,255,255,.03); padding: 18px; }
+      .modal h2 { margin: 0 0 10px; font-size: 18px; color: var(--cyan-2); letter-spacing: .6px; }
+      .field { display: grid; gap: 8px; margin-top: 10px; }
+      label { font-size: 12px; color: var(--muted); letter-spacing: .4px; }
+      input[type="email"] { width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(0,229,255,.25); background: #0b0f14; color: var(--text); outline: none; }
+      .row { display: flex; gap: 10px; margin-top: 14px; }
+      .btn.ghost { border-color: rgba(255,255,255,.22); background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); }
+
       figure.node {
         margin: 0; padding: 0; border-radius: var(--radius-xl); overflow: hidden;
         border: 1px solid rgba(255,255,255,.06);
@@ -265,8 +276,8 @@ const url = "https://lossdisfunction.com/lattice";
               <p>You’ve reached <strong>The Lattice</strong> — the central nervous system of <em>Loss Disfunction</em>. Here, memory is infrastructure. Every node is a life; every strand is a consequence. When the gate opens, you’ll traverse characters, systems, and the critical breakpoints that forged the Civil Synthesis Network.</p>
               <p>We’re assembling the strands now: <em>entities</em>, <em>locations</em>, <em>protocols</em>, <em>events</em>, and <em>logs</em>. What you’ll see is not a static wiki, but a living archive — a lattice that learns and refactors as the world clarifies.</p>
               <div class="cta-row">
-                <a class="btn" href="/subscribe" data-umami-event="subscribe-signal">Subscribe to the Signal</a>
-                <a class="btn orange" href="/system-logs">View System Logs</a>
+                <button class="btn" id="open-subscribe" type="button" data-umami-event="subscribe-signal">Subscribe to the Signal</button>
+                <a class="btn orange" href="/lore/">View System Logs</a>
                 <a class="btn" href="/about">About the Project</a>
               </div>
             </section>
@@ -286,6 +297,27 @@ const url = "https://lossdisfunction.com/lattice";
         <span>© {new Date().getFullYear()} Loss Disfunction</span>
         <span>Build: <span style="color:var(--cyan)">LATTICE_INIT</span> • Status: <span style="color:var(--orange)">PENDING</span></span>
       </footer>
+    </div>
+
+    <!-- Netlify Subscribe Modal (progressive enhancement) -->
+    <div id="subscribe-backdrop" class="backdrop" aria-hidden="true">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="subscribe-title">
+        <h2 id="subscribe-title">Subscribe to the Signal</h2>
+        <form name="ld-subscribe" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/lattice?subscribed=1">
+          <input type="hidden" name="form-name" value="ld-subscribe" />
+          <p style="display:none">
+            <label>Don’t fill this out: <input name="bot-field" /></label>
+          </p>
+          <div class="field">
+            <label for="email">Email address</label>
+            <input id="email" name="email" type="email" inputmode="email" autocomplete="email" required placeholder="you@example.com" />
+          </div>
+          <div class="row">
+            <button class="btn" type="submit">Send</button>
+            <button class="btn ghost" type="button" id="close-subscribe">Cancel</button>
+          </div>
+        </form>
+      </div>
     </div>
 
     <script>
@@ -353,6 +385,24 @@ const url = "https://lossdisfunction.com/lattice";
       (function() {
         const hero = document.getElementById('hero');
         if (!hero) return;
+        // Resolve background image with fallbacks
+        const candidates = [
+          hero.style.backgroundImage?.match(/url\('(.*)'\)/)?.[1],
+          '/lattice-in-the-frame.jpg',
+          '/lattice.jpg',
+          '/images/lattice-in-the-frame.jpg',
+          '/assets/lattice-node-frame.jpg'
+        ].filter(Boolean);
+        (function tryNext(i){
+          if (i >= candidates.length) return;
+          const src = candidates[i];
+          const img = new Image();
+          img.onload = () => { hero.style.backgroundImage = "url('" + src + "')"; };
+          img.onerror = () => tryNext(i+1);
+          img.src = src;
+        })(0);
+
+        // Subtle parallax (motion-safe)
         const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (reduce) return;
         const onScroll = () => {
@@ -361,6 +411,31 @@ const url = "https://lossdisfunction.com/lattice";
         };
         onScroll();
         window.addEventListener('scroll', onScroll, { passive: true });
+      })();
+
+      // Subscribe modal open/close
+      (function() {
+        const open = document.getElementById('open-subscribe');
+        const closeBtn = document.getElementById('close-subscribe');
+        const backdrop = document.getElementById('subscribe-backdrop');
+        if (!open || !backdrop) return;
+        const show = () => { backdrop.classList.add('show'); backdrop.setAttribute('aria-hidden','false'); document.getElementById('email')?.focus(); };
+        const hide = () => { backdrop.classList.remove('show'); backdrop.setAttribute('aria-hidden','true'); };
+        open.addEventListener('click', show, { passive: true });
+        closeBtn?.addEventListener('click', hide, { passive: true });
+        backdrop.addEventListener('click', (e) => { if (e.target === backdrop) hide(); }, { passive: true });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hide(); });
+        // Show lightweight confirmation if redirected after submit
+        const url = new URL(location.href);
+        if (url.searchParams.get('subscribed') === '1') {
+          const div = document.createElement('div');
+          div.textContent = 'Subscribed — thank you. Check your inbox.';
+          div.style.position = 'fixed'; div.style.bottom = '16px'; div.style.left = '50%'; div.style.transform = 'translateX(-50%)';
+          div.style.background = 'rgba(0,229,255,.15)'; div.style.border = '1px solid rgba(0,229,255,.35)'; div.style.color = '#e8f0f7';
+          div.style.padding = '10px 14px'; div.style.borderRadius = '10px'; div.style.zIndex = '50';
+          document.body.appendChild(div);
+          setTimeout(() => div.remove(), 5000);
+        }
       })();
     </script>
   </body>
