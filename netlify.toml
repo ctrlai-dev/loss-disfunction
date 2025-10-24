@@ -7,8 +7,6 @@
 
 [[plugins]]
   package = "@netlify/plugin-lighthouse"
-[redirects]
-
 [[redirects]]
   from = "/lore"
   to = "/universe/logs"
@@ -47,10 +45,10 @@ path = "/"
 path = "/about"
 
 [[plugins.inputs.audits]]
-path = "/archives"
+path = "/universe/archives"
 
 [[plugins.inputs.audits]]
-path = "/lore"
+path = "/universe/logs"
 
 [[plugins.inputs.audits]]
-path = "/lexicon"
+path = "/universe/lexicon"
