@@ -1,5 +1,4 @@
----
-import Base from "@/layouts/Base.astro";
+import AppShell from "@/layouts/AppShell.astro";
 import BackgroundMist from "@/components/BackgroundMist.astro";
 import { getCollection } from "astro:content";
 
@@ -14,7 +13,7 @@ const themes = byType("Theme");
 const diagrams = byType("Diagram");
 ---
 
-<Base title="About — LOSS DISFUNCTION" description="World, themes, and the Seed Protocol.">
+<AppShell title="About — LOSS DISFUNCTION">
   <section class="relative overflow-hidden min-h-screen">
     <BackgroundMist />
     <div class="container py-12 max-w-4xl relative z-10">
@@ -128,4 +127,4 @@ const diagrams = byType("Diagram");
       <p class="text-muted">Reach the project at <a href="mailto:seed@lossdisfunction.com" class="text-cyan hover:text-violet transition-colors">seed@lossdisfunction.com</a>.</p>
     </div>
   </section>
-</Base>
+</AppShell>

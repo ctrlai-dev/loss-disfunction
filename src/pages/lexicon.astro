@@ -1,11 +1,11 @@
 ---
-import Base from "@/layouts/Base.astro";
+import AppShell from "@/layouts/AppShell.astro";
 import glossary from "@/data/glossary.json";
 
 const terms = [...glossary].sort((a, b) => a.term.localeCompare(b.term));
 ---
 
-<Base title="Lexicon — LOSS DISFUNCTION" description="System terms, entities, and mechanisms.">
+<AppShell title="Lexicon — LOSS DISFUNCTION">
   <section class="relative min-h-screen">
     <div class="container py-12 max-w-3xl">
       <h1 class="text-4xl font-bold page-h1 mb-2">Lexicon</h1>
@@ -21,6 +21,6 @@ const terms = [...glossary].sort((a, b) => a.term.localeCompare(b.term));
       </div>
     </div>
   </section>
-</Base>
+</AppShell>
 
 

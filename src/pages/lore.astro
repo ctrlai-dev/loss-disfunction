@@ -1,11 +1,11 @@
 ---
-import Base from "@/layouts/Base.astro";
+import AppShell from "@/layouts/AppShell.astro";
 import { getCollection } from "astro:content";
 import BackgroundMist from "@/components/BackgroundMist.astro";
 // Load logs collection, sort but don't pre-render
 const logs = (await getCollection("logs")).sort((a,b)=>a.data.index-b.data.index);
 ---
-<Base title="System Logs — LOSS DISFUNCTION">
+<AppShell title="System Logs — LOSS DISFUNCTION">
   <section class="relative overflow-hidden min-h-screen">
     <BackgroundMist />
     <div class="container py-12 max-w-4xl relative z-10">
@@ -59,4 +59,4 @@ const logs = (await getCollection("logs")).sort((a,b)=>a.data.index-b.data.index
     </div>
     </div>
   </section>
-</Base>
+</AppShell>

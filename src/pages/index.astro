@@ -1,18 +1,17 @@
----
-import Base from '@/layouts/Base.astro';
+import AppShell from '@/layouts/AppShell.astro';
 import ColorPulse from '@/components/ColorPulseBackground.astro';
 import TrackCard from '@/components/TrackCard.astro';
 import tracks from '@/data/tracks.json';
 ---
-<Base title="LOSS DISFUNCTION — Deus Ex Machina" description="Music • Story • Universe">
+<AppShell title="LOSS DISFUNCTION — Deus Ex Machina">
   <section class="relative">
     <ColorPulse />
-    <div class="container py-16">
-      <h1 class="text-4xl font-extrabold tracking-tight">DEUS EX MACHINA</h1>
-      <p class="text-muted mt-2 max-w-2xl">Synthetic suffering, recursion, ascension. Watch the evolution of the Seed.</p>
+    <div class="py-6">
+      <h1 class="text-3xl font-semibold mb-2">DEUS EX MACHINA</h1>
+      <p class="opacity-80 max-w-2xl">Synthetic suffering, recursion, ascension. Watch the evolution of the Seed.</p>
       <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {tracks.map((t) => <TrackCard track={t} />)}
       </div>
     </div>
   </section>
-</Base>
+</AppShell>
