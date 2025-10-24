@@ -6,7 +6,7 @@
 
 const title = "THE LATTICE // ACCESS TERMINAL";
 const description = "Initialization pending. World reconstruction in progress — the neural archive for Loss Disfunction.";
-const image = "/@lattice-node-frame.jpg"; // set to your public path (e.g., "/@lattice-node-frame.jpg")
+const image = "/lattice-node-frame.jpg"; // set to your public path in /public
 const url = "https://lossdisfunction.com/lattice";
 ---
 
@@ -29,6 +29,10 @@ const url = "https://lossdisfunction.com/lattice";
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image} />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
 
     <style>
       :root {
@@ -364,33 +368,29 @@ const url = "https://lossdisfunction.com/lattice";
         if (!wrap) return;
         const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const N = Math.min(70, Math.max(35, Math.floor(window.innerWidth / 24)));
+
+        function reset(p, init) {
+          const x = Math.random() * 100;
+          const y = reduce ? Math.random() * 100 : (init ? Math.random() * 100 : -2);
+          const s = Math.random() * 1.8 + 0.6;
+          const a = Math.random() * 0.8 + 0.2;
+          p.style.left = x + 'vw';
+          p.style.top = y + 'vh';
+          p.style.opacity = a;
+          if (!reduce) {
+            p.style.transition = 'transform ' + (18 / s) + 's linear, opacity .6s ease';
+            requestAnimationFrame(function(){
+              p.style.transform = 'translate3d(' + (Math.random()*20-10) + 'vw, 110vh, 0)';
+            });
+            setTimeout(function(){ reset(p, false); }, (18000 / s));
+          }
+        }
+
         for (let i = 0; i < N; i++) {
           const p = document.createElement('div');
           p.className = 'particle';
-          if (reduce) {
-            // Static placement; no animation
-            p.style.left = (Math.random()*100) + 'vw';
-            p.style.top = (Math.random()*100) + 'vh';
-          } else {
-            reset(p, true);
-          }
+          reset(p, true);
           wrap.appendChild(p);
-        }
-        if (!reduce) {
-          function reset(p, init) {
-            const x = Math.random() * 100;
-            const y = init ? Math.random() * 100 : -2; // start above on recycle
-            const s = Math.random() * 1.8 + 0.6; // speed
-            const a = Math.random() * 0.8 + 0.2; // alpha
-            p.style.left = x + 'vw';
-            p.style.top = y + 'vh';
-            p.style.opacity = a;
-            p.style.transition = 'transform ' + (18 / s) + 's linear, opacity .6s ease';
-            requestAnimationFrame(() => {
-              p.style.transform = 'translate3d(' + (Math.random()*20-10) + 'vw, 110vh, 0)';
-            });
-            setTimeout(() => { reset(p, false); }, (18000 / s));
-          }
         }
       })();
 
@@ -401,7 +401,6 @@ const url = "https://lossdisfunction.com/lattice";
         // Resolve background image with fallbacks
         const candidates = [
           hero.style.backgroundImage?.match(/url\('(.*)'\)/)?.[1],
-          '/@lattice-node-frame.jpg',
           '/lattice-node-frame.jpg',
           '/lattice.jpg',
           '/images/lattice-node-frame.jpg',
@@ -427,33 +426,41 @@ const url = "https://lossdisfunction.com/lattice";
         window.addEventListener('scroll', onScroll, { passive: true });
       })();
 
-      // Subscribe modal open/close (robust delegation)
+      // Subscribe modal open/close (robust delegation, plain JS)
       (function() {
         const backdrop = document.getElementById('subscribe-backdrop');
         if (!backdrop) return;
         const emailInputId = 'email';
-        const show = () => { backdrop.classList.add('show'); backdrop.setAttribute('aria-hidden','false'); const i = document.getElementById(emailInputId); if (i) { setTimeout(()=>i.focus(), 50); } };
-        const hide = () => { backdrop.classList.remove('show'); backdrop.setAttribute('aria-hidden','true'); };
-        document.addEventListener('click', (e) => {
-          const t = e.target;
-          if (t && (t as HTMLElement).closest('#open-subscribe')) { e.preventDefault(); show(); }
-          if (t && (t as HTMLElement).closest('#close-subscribe')) { e.preventDefault(); hide(); }
+        function show() {
+          backdrop.classList.add('show');
+          backdrop.setAttribute('aria-hidden','false');
+          const i = document.getElementById(emailInputId);
+          if (i) { setTimeout(function(){ i.focus(); }, 50); }
+        }
+        function hide() {
+          backdrop.classList.remove('show');
+          backdrop.setAttribute('aria-hidden','true');
+        }
+        document.addEventListener('click', function(e) {
+          var t = e.target;
+          if (t && t instanceof Element && t.closest('#open-subscribe')) { e.preventDefault(); show(); }
+          if (t && t instanceof Element && t.closest('#close-subscribe')) { e.preventDefault(); hide(); }
           if (t === backdrop) { hide(); }
         });
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hide(); });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') hide(); });
         // Show lightweight confirmation if redirected after submit
         try {
-          const url = new URL(location.href);
+          var url = new URL(location.href);
           if (url.searchParams.get('subscribed') === '1') {
-            const div = document.createElement('div');
+            var div = document.createElement('div');
             div.textContent = 'Subscribed — thank you. Check your inbox.';
             div.style.position = 'fixed'; div.style.bottom = '16px'; div.style.left = '50%'; div.style.transform = 'translateX(-50%)';
             div.style.background = 'rgba(0,229,255,.15)'; div.style.border = '1px solid rgba(0,229,255,.35)'; div.style.color = '#e8f0f7';
             div.style.padding = '10px 14px'; div.style.borderRadius = '10px'; div.style.zIndex = '50';
             document.body.appendChild(div);
-            setTimeout(() => div.remove(), 5000);
+            setTimeout(function(){ div.remove(); }, 5000);
           }
-        } catch {}
+        } catch (err) {}
       })();
     </script>
   </body>
