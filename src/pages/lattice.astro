@@ -6,7 +6,7 @@
 
 const title = "THE LATTICE // ACCESS TERMINAL";
 const description = "Initialization pending. World reconstruction in progress — the neural archive for Loss Disfunction.";
-const image = "/lattice-in-the-frame.jpg"; // set to your public path (e.g., "/lattice-in-the-frame.jpg")
+const image = "/@lattice-node-frame.jpg"; // set to your public path (e.g., "/@lattice-node-frame.jpg")
 const url = "https://lossdisfunction.com/lattice";
 ---
 
@@ -235,6 +235,19 @@ const url = "https://lossdisfunction.com/lattice";
         .boot-intro { animation: none !important; opacity: 1 !important; transform: none !important; }
         .console .cursor { animation: none !important; }
       }
+
+      /* Mobile refinements */
+      @media (max-width: 640px) {
+        .frame { padding: 12px; gap: 12px; }
+        header .badge { font-size: 10px; padding: 6px 10px; letter-spacing: 1.2px; }
+        .term-head { padding: 10px 12px; }
+        .term-title { font-size: 11px; }
+        .term-body { padding: 14px; }
+        pre.console { font-size: clamp(11px, 3.3vw, 13px); padding: 12px 12px 12px 14px; }
+        .cta-row { flex-direction: column; gap: 10px; }
+        .btn { width: 100%; justify-content: center; }
+        .hero-bg { background-position: center top; }
+      }
     </style>
   </head>
 
@@ -276,7 +289,7 @@ const url = "https://lossdisfunction.com/lattice";
               <p>You’ve reached <strong>The Lattice</strong> — the central nervous system of <em>Loss Disfunction</em>. Here, memory is infrastructure. Every node is a life; every strand is a consequence. When the gate opens, you’ll traverse characters, systems, and the critical breakpoints that forged the Civil Synthesis Network.</p>
               <p>We’re assembling the strands now: <em>entities</em>, <em>locations</em>, <em>protocols</em>, <em>events</em>, and <em>logs</em>. What you’ll see is not a static wiki, but a living archive — a lattice that learns and refactors as the world clarifies.</p>
               <div class="cta-row">
-                <button class="btn" id="open-subscribe" type="button" data-umami-event="subscribe-signal">Subscribe to the Signal</button>
+                <button class="btn" id="open-subscribe" type="button" aria-controls="subscribe-backdrop" data-umami-event="subscribe-signal">Subscribe to the Signal</button>
                 <a class="btn orange" href="/lore/">View System Logs</a>
                 <a class="btn" href="/about">About the Project</a>
               </div>
@@ -388,9 +401,10 @@ const url = "https://lossdisfunction.com/lattice";
         // Resolve background image with fallbacks
         const candidates = [
           hero.style.backgroundImage?.match(/url\('(.*)'\)/)?.[1],
-          '/lattice-in-the-frame.jpg',
+          '/@lattice-node-frame.jpg',
+          '/lattice-node-frame.jpg',
           '/lattice.jpg',
-          '/images/lattice-in-the-frame.jpg',
+          '/images/lattice-node-frame.jpg',
           '/assets/lattice-node-frame.jpg'
         ].filter(Boolean);
         (function tryNext(i){
@@ -404,7 +418,7 @@ const url = "https://lossdisfunction.com/lattice";
 
         // Subtle parallax (motion-safe)
         const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (reduce) return;
+        if (reduce || window.innerWidth < 640) return; // disable parallax on small screens
         const onScroll = () => {
           const y = window.scrollY * 0.06; // gentle parallax
           hero.style.transform = 'translate3d(0,' + y + 'px,0)';
@@ -413,29 +427,33 @@ const url = "https://lossdisfunction.com/lattice";
         window.addEventListener('scroll', onScroll, { passive: true });
       })();
 
-      // Subscribe modal open/close
+      // Subscribe modal open/close (robust delegation)
       (function() {
-        const open = document.getElementById('open-subscribe');
-        const closeBtn = document.getElementById('close-subscribe');
         const backdrop = document.getElementById('subscribe-backdrop');
-        if (!open || !backdrop) return;
-        const show = () => { backdrop.classList.add('show'); backdrop.setAttribute('aria-hidden','false'); document.getElementById('email')?.focus(); };
+        if (!backdrop) return;
+        const emailInputId = 'email';
+        const show = () => { backdrop.classList.add('show'); backdrop.setAttribute('aria-hidden','false'); const i = document.getElementById(emailInputId); if (i) { setTimeout(()=>i.focus(), 50); } };
         const hide = () => { backdrop.classList.remove('show'); backdrop.setAttribute('aria-hidden','true'); };
-        open.addEventListener('click', show, { passive: true });
-        closeBtn?.addEventListener('click', hide, { passive: true });
-        backdrop.addEventListener('click', (e) => { if (e.target === backdrop) hide(); }, { passive: true });
+        document.addEventListener('click', (e) => {
+          const t = e.target;
+          if (t && (t as HTMLElement).closest('#open-subscribe')) { e.preventDefault(); show(); }
+          if (t && (t as HTMLElement).closest('#close-subscribe')) { e.preventDefault(); hide(); }
+          if (t === backdrop) { hide(); }
+        });
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hide(); });
         // Show lightweight confirmation if redirected after submit
-        const url = new URL(location.href);
-        if (url.searchParams.get('subscribed') === '1') {
-          const div = document.createElement('div');
-          div.textContent = 'Subscribed — thank you. Check your inbox.';
-          div.style.position = 'fixed'; div.style.bottom = '16px'; div.style.left = '50%'; div.style.transform = 'translateX(-50%)';
-          div.style.background = 'rgba(0,229,255,.15)'; div.style.border = '1px solid rgba(0,229,255,.35)'; div.style.color = '#e8f0f7';
-          div.style.padding = '10px 14px'; div.style.borderRadius = '10px'; div.style.zIndex = '50';
-          document.body.appendChild(div);
-          setTimeout(() => div.remove(), 5000);
-        }
+        try {
+          const url = new URL(location.href);
+          if (url.searchParams.get('subscribed') === '1') {
+            const div = document.createElement('div');
+            div.textContent = 'Subscribed — thank you. Check your inbox.';
+            div.style.position = 'fixed'; div.style.bottom = '16px'; div.style.left = '50%'; div.style.transform = 'translateX(-50%)';
+            div.style.background = 'rgba(0,229,255,.15)'; div.style.border = '1px solid rgba(0,229,255,.35)'; div.style.color = '#e8f0f7';
+            div.style.padding = '10px 14px'; div.style.borderRadius = '10px'; div.style.zIndex = '50';
+            document.body.appendChild(div);
+            setTimeout(() => div.remove(), 5000);
+          }
+        } catch {}
       })();
     </script>
   </body>
