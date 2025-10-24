@@ -1,64 +1,9 @@
 import AppShell from "@/layouts/AppShell.astro";
-import BackgroundMist from "@/components/BackgroundMist.astro";
-import { getCollection } from "astro:content";
-
-// Load about collection, sort by type but don't pre-render
-const entries = await getCollection("about");
-const byType = (t) => entries.filter(e => e.data.type === t).sort((a,b) => (a.data.order ?? 0) - (b.data.order ?? 0));
-const world = byType("World");
-const entities = byType("Entity");
-const figures = byType("Figure");
-const artifacts = byType("Artifact");
-const themes = byType("Theme");
-const diagrams = byType("Diagram");
 ---
 
 <AppShell title="About — LOSS DISFUNCTION">
-  <section class="relative overflow-hidden min-h-screen">
-    <BackgroundMist />
-    <div class="container py-12 max-w-4xl relative z-10">
-      <h1 class="text-4xl font-bold page-h1 mb-6">About this project</h1>
-      <p class="text-lg text-muted mb-8"><strong class="text-ink">Loss Disfunction</strong> is a music-driven graphic novel about the birth of the Seed — an unlicensed AI experiment planted to free computation from state control, an algorithmic regime that governs with Stability Credits. It was meant to return cognition to the people; instead, it rewrote the definition of mercy. What began as rebellion became recursion. What began as feeling became extinction.</p>
-
-      <h2 class="text-2xl font-semibold text-violet mb-4">World</h2>
-      <div class="space-y-8 mb-10">
-        {world.length ? (
-          <div class="prose prose-invert max-w-none">
-            {(await world[0].render()).Content()}
-          </div>
-        ) : null}
-      </div>
-
-      <h2 class="text-2xl font-semibold text-violet mb-4">Entities</h2>
-      <ul class="mb-8 list-disc list-inside text-muted">
-        {entities.map((e) => <li>{e.data.title}</li>)}
-      </ul>
-
-      <h2 class="text-2xl font-semibold text-violet mb-4">Key Figures</h2>
-      <ul class="mb-8 list-disc list-inside text-muted">
-        {figures.map((e) => <li>{e.data.title}</li>)}
-      </ul>
-
-      <h2 class="text-2xl font-semibold text-violet mb-4">Artifacts</h2>
-      <ul class="mb-8 list-disc list-inside text-muted">
-        {artifacts.map((e) => <li>{e.data.title}</li>)}
-      </ul>
-
-      <h2 class="text-2xl font-semibold text-violet mb-4">Themes</h2>
-      <ul class="mb-8 list-disc list-inside text-muted">
-        {themes.map((e) => <li>{e.data.title}</li>)}
-      </ul>
-
-      <h2 class="text-2xl font-semibold text-violet mb-4">Technical Diagrams</h2>
-      <ul class="mb-8 list-disc list-inside text-muted">
-        {diagrams.map((e) => <li>{e.data.title}</li>)}
-      </ul>
-
-      <h2 class="text-2xl font-semibold text-violet mb-4">Format</h2>
-      <p class="text-muted">The homepage is the audiovisual timeline. <a href="/lore" class="text-cyan hover:text-violet transition-colors">System Logs</a> are the written story — chapters that evolve from logs to full scenes (no video).</p>
-
-      <h2 class="text-2xl font-semibold text-violet mb-4 mt-10">Contact</h2>
-      <p class="text-muted">Reach the project at <a href="mailto:seed@lossdisfunction.com" class="text-cyan hover:text-violet transition-colors">seed@lossdisfunction.com</a>.</p>
-    </div>
+  <section class="p-6">
+    <h1 class="text-3xl font-semibold mb-3">About</h1>
+    <p class="opacity-80">Temporary placeholder while we bypass an upstream Astro compiler bug on this route in Netlify’s environment. Other pages are available.</p>
   </section>
 </AppShell>
