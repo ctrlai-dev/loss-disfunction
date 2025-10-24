@@ -8,7 +8,7 @@ const entries = all
   .filter(e => type ? e.data.type === type : true)
   .sort((a,b) => (a.data.order ?? 999) - (b.data.order ?? 999));
 ---
-<AppShell title="Encyclopedia">
+<AppShell title="Encyclopedia" sidebar={true}>
   <h1 class="text-2xl font-semibold mb-4">Encyclopedia {type ? `— ${type}` : ""}</h1>
   <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
     {entries.map(({ slug, data }) => (
