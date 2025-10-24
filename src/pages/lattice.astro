@@ -152,8 +152,9 @@ const url = "https://lossdisfunction.com/lattice";
       .kicker { color: var(--cyan-2); text-transform: uppercase; letter-spacing: 2.4px; font-size: 12px; opacity: .95; }
       h1 {
         margin: 8px 0 4px; font-size: clamp(28px, 4vw, 48px); line-height: 1.08;
-        background: linear-gradient(90deg, var(--cyan), var(--orange-2));
+        background: linear-gradient(90deg, var(--cyan) 0%, var(--orange-2) 100%);
         -webkit-background-clip: text; background-clip: text; color: transparent;
+        background-size: 100% 100%; display: inline-block; /* ensure gradient maps to text width */
         text-shadow: 0 0 24px rgba(0,229,255,.18);
       }
       .subtitle { color: var(--muted); font-size: clamp(14px, 1.5vw, 16px); }
