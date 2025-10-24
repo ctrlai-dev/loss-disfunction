@@ -44,4 +44,38 @@ const about = defineCollection({
   })
 });
 
-export const collections = { logs, archives, about };
+// Universe collection (Cosmos)
+const universeEntry = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    type: z.enum(['character','faction','technology','location','artifact','theme']).default('character'),
+    order: z.number().optional(),
+    cover: z.string().optional(),
+    tags: z.array(z.string()).default([]),
+    plottrId: z.string().optional(),
+    related: z.array(z.string()).default([]),
+    summary: z.string().min(1)
+  })
+});
+
+export const collections = { logs, archives, about, universe: universeEntry };
+
+// Universe collection for Cosmos features
+const universeEntry = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    type: z.enum(['character','faction','technology','location','artifact','theme']).default('character'),
+    order: z.number().optional(),
+    cover: z.string().optional(),
+    tags: z.array(z.string()).default([]),
+    plottrId: z.string().optional(),
+    related: z.array(z.string()).default([]),
+    summary: z.string().min(1)
+  })
+});
+
+export const collectionsCosmos = {
+  universe: universeEntry
+};

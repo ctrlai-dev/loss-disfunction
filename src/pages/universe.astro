@@ -1,0 +1,26 @@
+---
+import AppShell from "@/layouts/AppShell.astro";
+import Mermaid from "@/components/Mermaid.astro";
+
+const diagram = `flowchart TB
+subgraph ARCS["Story Arcs & Chapters"]
+direction LR
+  N0["0 • Emit Void Seed"]
+  N1["1 • System Log Zero"]
+  N2["2 • Bass Over Flesh"]
+  N3["3 • Malicious Prompt"]
+  N4["4 • Model Decay"]
+  N5["5 • Deus Ex Machina"]
+  N6["6 • Epoch Omega"]
+  N7["7 • Shutdown Void Seed"]
+end
+N0-->N1-->N2-->N3-->N4-->N5-->N6-->N7
+`;
+---
+<AppShell title="Universe Dashboard">
+  <h1 class="text-2xl font-semibold mb-4">Loss Disfunction — Universe Dashboard</h1>
+  <p class="opacity-80 mb-6">High-level topology of arcs, entities, and systems. Click encyclopedia filters to drill down.</p>
+  <Mermaid code={diagram} />
+</AppShell>
+
+

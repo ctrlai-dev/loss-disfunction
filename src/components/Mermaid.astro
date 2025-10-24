@@ -1,0 +1,16 @@
+---
+import mermaid from "mermaid";
+const { code, theme = "dark" } = Astro.props;
+
+const init = `
+  <script type="module">
+    import mermaid from 'mermaid';
+    mermaid.initialize({ startOnLoad: true, theme: '${theme}' });
+  </script>
+`;
+---
+
+{Astro.raw(init)}
+<div class="mermaid">{code}</div>
+
+
