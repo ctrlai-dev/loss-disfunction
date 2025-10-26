@@ -106,20 +106,20 @@ const directivesWithContent = await Promise.all(
 </style>
 
 <Base title="CSN Directives — LOSS DISFUNCTION" description="Civil Synthesis Network regulatory documents, directives, and public health bulletins.">
-  <section class="relative overflow-hidden min-h-screen" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);">
+  <section class="relative overflow-hidden min-h-screen dark:bg-[#050507]">
     <BackgroundMist />
 
     <div class="container relative z-10 mx-auto max-w-4xl py-12">
-      <h1 class="text-4xl font-bold mb-2" style="color: #1f2937;">CSN Directives</h1>
-      <p class="mb-8" style="color: #6b7280;">Official Civil Synthesis Network regulatory documents, directives, and public health bulletins. <span style="color: #3b82f6;">Active as of 2070</span>.</p>
+      <h1 class="text-4xl font-bold mb-2" style="color: var(--ink);">CSN Directives</h1>
+      <p class="mb-8" style="color: var(--muted);">Official Civil Synthesis Network regulatory documents, directives, and public health bulletins. <span style="color: var(--cyan);">Active as of 2070</span>.</p>
 
       <div class="space-y-4">
         {directivesWithContent.map((directive) => (
-          <details class="group rounded-xl border border-gray-300 bg-white/98 backdrop-blur p-4 open:shadow-lg open:shadow-blue-900/10 transition-shadow" id={directive.slug}>
+          <details class="group rounded-xl border border-[#1a1a26] bg-[#0b0b12] backdrop-blur p-4 open:shadow-lg open:shadow-cyan-500/20 transition-shadow" id={directive.slug}>
             <summary class="flex cursor-pointer items-start justify-between gap-4">
               <div>
                 <div class="flex flex-wrap items-center gap-2">
-                  <span class="text-lg font-semibold" style="color: #1f2937;">{directive.data.title}</span>
+                  <span class="text-lg font-semibold" style="color: var(--ink);">{directive.data.title}</span>
                   <span class="chip chip-cyan">{directive.data.year}</span>
                   <span class={`chip ${
                     directive.data.classification === "RESTRICTED" ? "chip-red" :
@@ -130,17 +130,17 @@ const directivesWithContent = await Promise.all(
                   </span>
                   <span class="chip chip-green">{directive.data.status}</span>
                 </div>
-                <div class="text-xs mt-1" style="color: #6b7280;">
+                <div class="text-xs mt-1" style="color: var(--muted);">
                   ID: {directive.data.id} • Category: {directive.data.category}
                   {directive.data.issuedBy && ` • Issued by: ${directive.data.issuedBy}`}
                 </div>
               </div>
-              <div class="caret mt-1 transition-transform" style="color: #3b82f6;">▸</div>
+              <div class="caret mt-1 transition-transform" style="color: var(--cyan);">▸</div>
             </summary>
 
             <div class="prose prose-invert max-w-none mt-4">
               <directive.renderedContent.Content />
-              <div class="mt-4 flex items-center gap-3 text-xs" style="color: #6b7280;">
+              <div class="mt-4 flex items-center gap-3 text-xs" style="color: var(--muted);">
                 <span class="chip chip-cyan">CSN Official Document</span>
                 <span class="chip chip-green">Public Distribution</span>
               </div>
@@ -149,8 +149,8 @@ const directivesWithContent = await Promise.all(
         ))}
       </div>
 
-      <footer class="mt-12 border-t border-gray-200 pt-6 text-xs" style="color: #6b7280;">
-        Civil Synthesis Network • <span style="color: #3b82f6;">Active Directives 2070</span> • Compliance Mandatory
+      <footer class="mt-12 border-t border-[#1a1a26] pt-6 text-xs" style="color: var(--muted);">
+        Civil Synthesis Network • <span style="color: var(--cyan);">Active Directives 2070</span> • Compliance Mandatory
       </footer>
     </div>
   </section>

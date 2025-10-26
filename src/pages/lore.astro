@@ -48,21 +48,21 @@ const logs = (await getCollection("logs")).sort((a,b)=>a.data.index-b.data.index
   }
 </style>
 <Base title="System Logs — LOSS DISFUNCTION">
-  <section class="relative overflow-hidden min-h-screen" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);">
+  <section class="relative overflow-hidden min-h-screen dark:bg-[#050507]">
     <BackgroundMist />
     <div class="container py-12 max-w-4xl relative z-10">
     <div class="mb-12">
-      <h1 class="text-4xl font-bold mb-4" style="color: #1f2937;">System Logs</h1>
-      <p class="text-lg" style="color: #6b7280;">Fragments of the Seed's evolution — ordered 000 → 008.</p>
+      <h1 class="text-4xl font-bold mb-4" style="color: var(--ink);">System Logs</h1>
+      <p class="text-lg" style="color: var(--muted);">Fragments of the Seed's evolution — ordered 000 → 008.</p>
     </div>
     
     <div class="space-y-12">
       {logs.map(async (entry) => {
         const { Content } = await entry.render();
         return (
-        <section id={`log-${String(entry.data.index).padStart(3,"0")}`} class="rounded-xl border border-gray-300 bg-white/98 backdrop-blur p-8">
+        <section id={`log-${String(entry.data.index).padStart(3,"0")}`} class="rounded-xl border border-[#1a1a26] bg-[#0b0b12]/98 backdrop-blur p-8">
           <div class="mb-6">
-            <h2 class="text-2xl font-bold mb-2 tracking-wide" style="color: #3b82f6;">
+            <h2 class="text-2xl font-bold mb-2 tracking-wide" style="color: var(--cyan);">
               {entry.data.id}: {entry.data.title}
             </h2>
             <div class="flex flex-wrap items-center gap-2 mb-2">
@@ -83,13 +83,13 @@ const logs = (await getCollection("logs")).sort((a,b)=>a.data.index-b.data.index
               )}
             </div>
             {entry.data.scene && (
-              <p class="text-sm font-mono" style="color: #8b5cf6;">Scene: {entry.data.scene}</p>
+              <p class="text-sm font-mono" style="color: var(--violet);">Scene: {entry.data.scene}</p>
             )}
             {entry.data.characters && (
-              <p class="text-sm font-mono" style="color: #6b7280;">Characters: {entry.data.characters.join(", ")}</p>
+              <p class="text-sm font-mono" style="color: var(--muted);">Characters: {entry.data.characters.join(", ")}</p>
             )}
             {entry.data.summary && (
-              <p class="text-sm italic mt-2" style="color: #6b7280;">{entry.data.summary}</p>
+              <p class="text-sm italic mt-2" style="color: var(--muted);">{entry.data.summary}</p>
             )}
           </div>
           <div class="prose prose-invert max-w-none">

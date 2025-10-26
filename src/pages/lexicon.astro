@@ -6,16 +6,16 @@ const terms = [...glossary].sort((a, b) => a.term.localeCompare(b.term));
 ---
 
 <Base title="Lexicon — LOSS DISFUNCTION" description="System terms, entities, and mechanisms.">
-  <section class="relative min-h-screen" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);">
+  <section class="relative min-h-screen dark:bg-[#050507]">
     <div class="container py-12 max-w-3xl">
-      <h1 class="text-4xl font-bold mb-2" style="color: #1f2937;">Lexicon</h1>
-      <p class="mb-8" style="color: #6b7280;">A reference for terms used across the CSN, Seed Protocol, and the world of Loss Disfunction.</p>
+      <h1 class="text-4xl font-bold mb-2" style="color: var(--ink);">Lexicon</h1>
+      <p class="mb-8" style="color: var(--muted);">A reference for terms used across the CSN, Seed Protocol, and the world of Loss Disfunction.</p>
 
-      <div class="divide-y divide-gray-300 rounded-xl border border-gray-300 bg-white/98">
+      <div class="divide-y divide-[#1a1a26] rounded-xl border border-[#1a1a26] bg-[#0b0b12]/98">
         {terms.map(({ term, def }) => (
           <div class="p-4">
-            <div class="font-semibold" style="color: #3b82f6;">{term}</div>
-            <div class="text-sm mt-1" style="color: #6b7280;">{def}</div>
+            <div class="font-semibold" style="color: var(--cyan);">{term}</div>
+            <div class="text-sm mt-1" style="color: var(--muted);">{def}</div>
           </div>
         ))}
       </div>

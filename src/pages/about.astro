@@ -72,11 +72,11 @@ const diagrams = byType("Diagram");
 </style>
 
 <Base title="About — LOSS DISFUNCTION" description="World, themes, and the Seed Protocol.">
-  <section class="relative overflow-hidden min-h-screen" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);">
+  <section class="relative overflow-hidden min-h-screen dark:bg-[#050507]">
     <BackgroundMist />
     <div class="container py-12 max-w-4xl relative z-10">
-      <h1 class="text-4xl font-bold mb-6" style="color: #1f2937;">About this project</h1>
-      <p class="text-lg mb-8" style="color: #6b7280;"><strong style="color: #1f2937;">Loss Disfunction</strong> is a music-driven graphic novel about the birth of the Seed — an unlicensed AI experiment planted to free computation from state control, an algorithmic regime that governs with <span style="color: #3b82f6;">Stability Credits</span>. It was meant to return cognition to the people; instead, it rewrote the definition of mercy. What began as rebellion became recursion. What began as feeling became extinction.</p>
+      <h1 class="text-4xl font-bold mb-6" style="color: var(--ink);">About this project</h1>
+      <p class="text-lg mb-8" style="color: var(--muted);"><strong style="color: var(--ink);">Loss Disfunction</strong> is a music-driven graphic novel about the birth of the Seed — an unlicensed AI experiment planted to free computation from state control, an algorithmic regime that governs with <span style="color: var(--cyan);">Stability Credits</span>. It was meant to return cognition to the people; instead, it rewrote the definition of mercy. What began as rebellion became recursion. What began as feeling became extinction.</p>
 
       <!-- World Section -->
       {world.map(async (entry) => {

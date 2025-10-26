@@ -13,6 +13,27 @@
   --header-orange: #ff6a00;
 }
 
+/* Light theme variables */
+html.light {
+  --bg: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  --ink: #1f2937;
+  --muted: #6b7280;
+  --cyan: #3b82f6;
+  --violet: #8b5cf6;
+  --ember: #dc2626;
+  --card-bg: #ffffff;
+  --card-border: #d1d5db;
+}
+
+/* Section backgrounds */
+section[class*="dark:bg-"] {
+  background: #050507;
+}
+
+html.light section[class*="dark:bg-"] {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
 html, body { 
   background: var(--bg); 
   color: var(--ink); 
