@@ -11,7 +11,7 @@ const terms = [...glossary].sort((a, b) => a.term.localeCompare(b.term));
       <h1 class="text-4xl font-bold mb-2" style="color: #1f2937;">Lexicon</h1>
       <p class="mb-8" style="color: #6b7280;">A reference for terms used across the CSN, Seed Protocol, and the world of Loss Disfunction.</p>
 
-      <div class="divide-y divide-gray-200 rounded-xl border border-gray-200 bg-white/95">
+      <div class="divide-y divide-gray-300 rounded-xl border border-gray-300 bg-white/98">
         {terms.map(({ term, def }) => (
           <div class="p-4">
             <div class="font-semibold" style="color: #3b82f6;">{term}</div>

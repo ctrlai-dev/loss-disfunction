@@ -115,7 +115,7 @@ const archives = (await getCollection("archives")).sort((a, b) => a.data.id.loca
         {archives.map(async (entry) => {
           const { Content } = await entry.render();
           return (
-          <details class="group rounded-xl border border-gray-200 bg-white/95 backdrop-blur p-4 open:shadow-lg open:shadow-blue-900/10 transition-shadow" id={entry.slug}>
+          <details class="group rounded-xl border border-gray-300 bg-white/98 backdrop-blur p-4 open:shadow-lg open:shadow-blue-900/10 transition-shadow" id={entry.slug}>
             <summary class="flex cursor-pointer items-start justify-between gap-4">
               <div>
                 <div class="flex flex-wrap items-center gap-2">
