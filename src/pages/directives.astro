@@ -65,6 +65,46 @@ const healthDirectives = directivesWithContent.filter(d => d.data.category === "
   details[open] summary .caret { transform: rotate(90deg); }
   summary::-webkit-details-marker { display: none; }
 
+  /* Override prose-invert for light backgrounds */
+  .prose-invert {
+    color: #374151 !important;
+  }
+  
+  .prose-invert h1,
+  .prose-invert h2,
+  .prose-invert h3,
+  .prose-invert h4,
+  .prose-invert h5,
+  .prose-invert h6 {
+    color: #1f2937 !important;
+    font-weight: 600;
+  }
+  
+  .prose-invert strong {
+    color: #1f2937 !important;
+    font-weight: 600;
+  }
+  
+  .prose-invert em {
+    color: #374151 !important;
+    font-style: italic;
+  }
+  
+  .prose-invert blockquote p {
+    color: #374151 !important;
+    margin: 0;
+  }
+  
+  .prose-invert a {
+    color: #3b82f6 !important;
+    text-decoration: none;
+  }
+  
+  .prose-invert a:hover {
+    color: #1d4ed8 !important;
+    text-decoration: underline;
+  }
+
   /* Research Documentation Color Scheme */
   .directive-content {
     /* Optimal reading line length (65 characters) */
@@ -118,7 +158,7 @@ const healthDirectives = directivesWithContent.filter(d => d.data.category === "
     line-height: 1.4;
     font-weight: 600;
     margin: 1.25rem 0 0.5rem 0;
-    color: #4b5563;
+    color: #1f2937;
   }
 
   .directive-content p {
@@ -144,7 +184,7 @@ const healthDirectives = directivesWithContent.filter(d => d.data.category === "
     border-left: 4px solid #3b82f6;
     background: #f8fafc;
     font-style: italic;
-    color: #4b5563;
+    color: #374151;
     border-radius: 0 0.25rem 0.25rem 0;
   }
 
@@ -180,7 +220,7 @@ const healthDirectives = directivesWithContent.filter(d => d.data.category === "
   }
 
   .directive-content em {
-    color: #4b5563;
+    color: #374151;
     font-style: italic;
   }
 

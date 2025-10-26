@@ -53,6 +53,46 @@ const archives = (await getCollection("archives")).sort((a, b) => a.data.id.loca
   .flicker { animation: scanline 4s linear infinite; }
   details[open] summary .caret { transform: rotate(90deg); }
   summary::-webkit-details-marker { display: none; }
+
+  /* Override prose-invert for light backgrounds */
+  .prose-invert {
+    color: #374151 !important;
+  }
+  
+  .prose-invert h1,
+  .prose-invert h2,
+  .prose-invert h3,
+  .prose-invert h4,
+  .prose-invert h5,
+  .prose-invert h6 {
+    color: #1f2937 !important;
+    font-weight: 600;
+  }
+  
+  .prose-invert strong {
+    color: #1f2937 !important;
+    font-weight: 600;
+  }
+  
+  .prose-invert em {
+    color: #374151 !important;
+    font-style: italic;
+  }
+  
+  .prose-invert blockquote p {
+    color: #374151 !important;
+    margin: 0;
+  }
+  
+  .prose-invert a {
+    color: #3b82f6 !important;
+    text-decoration: none;
+  }
+  
+  .prose-invert a:hover {
+    color: #1d4ed8 !important;
+    text-decoration: underline;
+  }
 </style>
 
 
