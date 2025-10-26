@@ -67,8 +67,8 @@ const healthDirectives = directivesWithContent.filter(d => d.data.category === "
 
   /* Research Documentation Color Scheme */
   .directive-content {
-    /* Optimal reading line length (65 characters) */
-    max-width: 65ch;
+    /* Optimal reading line length (75 characters) - wider */
+    max-width: 75ch;
     margin: 0 auto;
     
     /* Improved typography scale */
@@ -77,11 +77,11 @@ const healthDirectives = directivesWithContent.filter(d => d.data.category === "
     color: #374151; /* Professional dark gray */
     
     /* Better spacing */
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
     
     /* Research paper background */
     background: #fefefe;
-    padding: 2.5rem;
+    padding: 3rem;
     border-radius: 0.5rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     border: 1px solid #e5e7eb;
@@ -270,15 +270,15 @@ const healthDirectives = directivesWithContent.filter(d => d.data.category === "
       <p class="mb-8" style="color: #6b7280;">Official Civil Synthesis Network regulatory documents, directives, and public health bulletins. <span style="color: #3b82f6;">Active as of 2070</span>.</p>
 
       <!-- Terraformic Regulation Directives -->
-      <div class="mb-12">
+      <div class="mb-16">
         <h2 class="text-2xl font-semibold mb-6 flex items-center gap-3" style="color: #1f2937;">
           <span class="chip chip-green">TERRAFORMIC REGULATION</span>
           Environmental & Atmospheric Control
         </h2>
         
-        <div class="space-y-4">
+        <div class="space-y-8">
           {terraformicDirectives.map((directive) => (
-            <details class="group rounded-xl border border-gray-300 bg-white/98 backdrop-blur p-4 open:shadow-lg open:shadow-blue-900/10 transition-shadow">
+            <details class="group rounded-xl border border-gray-300 bg-white/98 backdrop-blur p-6 open:shadow-lg open:shadow-blue-900/10 transition-shadow">
               <summary class="flex cursor-pointer items-start justify-between gap-4">
                 <div>
                   <div class="flex flex-wrap items-center gap-2">
