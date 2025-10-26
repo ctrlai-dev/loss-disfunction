@@ -44,4 +44,18 @@ const about = defineCollection({
   })
 });
 
-export const collections = { logs, archives, about };
+const directives = defineCollection({
+  type: 'content',
+  schema: z.object({
+    id: z.string(),
+    title: z.string(),
+    category: z.enum(['Terraformic Regulation', 'Cultural-Neural Infrastructure', 'Bio-Alignment Directorate', 'Public Health']),
+    year: z.number(),
+    classification: z.enum(['PUBLIC', 'INTERNAL', 'CONFIDENTIAL', 'RESTRICTED']),
+    status: z.enum(['ACTIVE', 'DRAFT', 'REVISED', 'SUPERSEDED']),
+    issuedBy: z.string().optional(),
+    crossReferences: z.array(z.string()).optional()
+  })
+});
+
+export const collections = { logs, archives, about, directives };

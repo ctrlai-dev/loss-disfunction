@@ -8,12 +8,13 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "astro": "^4.12.0",
     "@astrojs/mdx": "^3.1.0",
     "@astrojs/tailwind": "^5.1.0",
-    "tailwindcss": "^3.4.12",
-    "postcss": "^8.4.47",
+    "astro": "^4.12.0",
     "autoprefixer": "^10.4.20",
+    "marked": "^16.4.1",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.12",
     "zod": "^3.23.8"
   }
 }
