@@ -64,6 +64,178 @@ const healthDirectives = directivesWithContent.filter(d => d.data.category === "
   .flicker { animation: scanline 4s linear infinite; }
   details[open] summary .caret { transform: rotate(90deg); }
   summary::-webkit-details-marker { display: none; }
+
+  /* Enhanced Typography for Readability */
+  .directive-content {
+    /* Optimal reading line length (65 characters) */
+    max-width: 65ch;
+    margin: 0 auto;
+    
+    /* Typography scale */
+    font-size: 16px;
+    line-height: 1.6;
+    color: #e5e7eb;
+    
+    /* Improved spacing */
+    margin-bottom: 2rem;
+  }
+
+  .directive-content h1 {
+    font-size: 2.25rem;
+    line-height: 1.2;
+    font-weight: 700;
+    margin: 2rem 0 1rem 0;
+    color: #f3f4f6;
+    border-bottom: 2px solid rgba(94, 234, 212, 0.3);
+    padding-bottom: 0.5rem;
+  }
+
+  .directive-content h2 {
+    font-size: 1.875rem;
+    line-height: 1.3;
+    font-weight: 600;
+    margin: 2rem 0 1rem 0;
+    color: #f3f4f6;
+  }
+
+  .directive-content h3 {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    font-weight: 600;
+    margin: 1.5rem 0 0.75rem 0;
+    color: #e5e7eb;
+  }
+
+  .directive-content h4 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    font-weight: 600;
+    margin: 1.25rem 0 0.5rem 0;
+    color: #d1d5db;
+  }
+
+  .directive-content p {
+    margin: 1rem 0;
+    line-height: 1.6;
+    color: #d1d5db;
+  }
+
+  .directive-content ul, .directive-content ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .directive-content li {
+    margin: 0.5rem 0;
+    color: #d1d5db;
+  }
+
+  .directive-content blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    border-left: 4px solid #5eead4;
+    background: rgba(94, 234, 212, 0.1);
+    font-style: italic;
+    color: #e5e7eb;
+  }
+
+  .directive-content code {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.875rem;
+    color: #5eead4;
+  }
+
+  .directive-content pre {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border: 1px solid rgba(94, 234, 212, 0.2);
+  }
+
+  .directive-content pre code {
+    background: none;
+    padding: 0;
+    color: #e5e7eb;
+  }
+
+  .directive-content strong {
+    color: #f3f4f6;
+    font-weight: 600;
+  }
+
+  .directive-content em {
+    color: #d1d5db;
+    font-style: italic;
+  }
+
+  .directive-content hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(94, 234, 212, 0.3), transparent);
+    margin: 2rem 0;
+  }
+
+  .directive-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .directive-content th, .directive-content td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(94, 234, 212, 0.2);
+  }
+
+  .directive-content th {
+    background: rgba(94, 234, 212, 0.1);
+    font-weight: 600;
+    color: #f3f4f6;
+  }
+
+  .directive-content td {
+    color: #d1d5db;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .directive-content {
+      font-size: 15px;
+      padding: 0 1rem;
+    }
+    
+    .directive-content h1 {
+      font-size: 1.875rem;
+    }
+    
+    .directive-content h2 {
+      font-size: 1.5rem;
+    }
+    
+    .directive-content h3 {
+      font-size: 1.25rem;
+    }
+  }
+
+  /* Focus states for accessibility */
+  details:focus-within {
+    outline: 2px solid rgba(94, 234, 212, 0.5);
+    outline-offset: 2px;
+  }
+
+  summary:focus {
+    outline: 2px solid rgba(94, 234, 212, 0.5);
+    outline-offset: 2px;
+  }
 </style>
 
 <Base title="CSN Directives — LOSS DISFUNCTION" description="Civil Synthesis Network regulatory documents, directives, and public health bulletins.">
@@ -107,7 +279,9 @@ const healthDirectives = directivesWithContent.filter(d => d.data.category === "
               </summary>
 
               <div class="prose prose-invert max-w-none mt-4">
-                <directive.renderedContent.Content />
+                <div class="directive-content">
+                  <directive.renderedContent.Content />
+                </div>
                 <div class="mt-4 flex items-center gap-3 text-xs text-muted">
                   <span class="chip chip-cyan">CSN Official Document</span>
                   <span class="chip chip-green">Public Distribution</span>
