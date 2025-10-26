@@ -1,5 +1,4 @@
 ---
-import Base from "@/layouts/Base.astro";
 import { getCollection } from "astro:content";
 
 // Load directives collection, sort by ID
@@ -15,21 +14,29 @@ const directivesWithContent = await Promise.all(
 );
 ---
 
-<Base title="CSN Directives — LOSS DISFUNCTION" description="Civil Synthesis Network regulatory documents, directives, and public health bulletins.">
-  <section class="relative overflow-hidden min-h-screen" style="background: #f5f5f5;">
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CSN Directives — Official Documentation</title>
+    <link rel="stylesheet" href="../styles/document.css" />
+  </head>
+  <body class="document-layout">
     <div class="document-container">
       {directivesWithContent.map((directive) => (
-        <article class="directive-document">
+        <div class="directive-document">
           <!-- Document Header -->
           <header class="document-header">
-            <h1 class="document-title">{directive.data.title}</h1>
-            <div class="document-meta">
-              <span class="meta-item">ID: {directive.data.id}</span>
-              <span class="meta-item">Category: {directive.data.category}</span>
-              <span class="meta-item">Year: {directive.data.year}</span>
-              <span class="meta-item">Status: {directive.data.status}</span>
-              <span class="meta-item">Classification: {directive.data.classification}</span>
-              {directive.data.issuedBy && <span class="meta-item">Issued By: {directive.data.issuedBy}</span>}
+            <div class="header-info">
+              <h1 class="document-title">{directive.data.title}</h1>
+              <div class="document-meta">
+                <span class="meta-item">ID: {directive.data.id}</span>
+                <span class="meta-item">Category: {directive.data.category}</span>
+                <span class="meta-item">Year: {directive.data.year}</span>
+                <span class="meta-item">Status: {directive.data.status}</span>
+                <span class="meta-item">Classification: {directive.data.classification}</span>
+                {directive.data.issuedBy && <span class="meta-item">Issued By: {directive.data.issuedBy}</span>}
+              </div>
             </div>
           </header>
 
@@ -40,16 +47,24 @@ const directivesWithContent = await Promise.all(
 
           <!-- Document Footer -->
           <footer class="document-footer">
-            <p>CSN Official Document • Classification: {directive.data.classification} • {directive.data.year}</p>
-            <p>Civil Synthesis Network • All Rights Reserved</p>
+            <div class="footer-info">
+              <p class="footer-text">CSN Official Document • Classification: {directive.data.classification} • {directive.data.year}</p>
+              <p class="footer-text">Civil Synthesis Network • All Rights Reserved</p>
+            </div>
           </footer>
-        </article>
+        </div>
       ))}
     </div>
-  </section>
-</Base>
+  </body>
+</html>
 
 <style>
+  body {
+    margin: 0;
+    background: #f5f5f5;
+    font-family: 'Georgia', 'Times New Roman', serif;
+  }
+
   .document-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -61,6 +76,7 @@ const directivesWithContent = await Promise.all(
     padding: 60px;
     margin-bottom: 40px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    page-break-after: always;
   }
 
   .document-header {
@@ -70,12 +86,11 @@ const directivesWithContent = await Promise.all(
   }
 
   .document-title {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: bold;
-    margin: 0 0 1rem 0;
+    margin: 0 0 0.5rem 0;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    font-family: 'Georgia', 'Times New Roman', serif;
   }
 
   .document-meta {
@@ -84,7 +99,6 @@ const directivesWithContent = await Promise.all(
     gap: 1.5rem;
     font-size: 0.9rem;
     color: #666;
-    font-family: 'Courier New', monospace;
   }
 
   .meta-item {
@@ -98,9 +112,8 @@ const directivesWithContent = await Promise.all(
 
   .document-body {
     font-size: 11pt;
-    line-height: 1.6;
+    line-height: 1.5;
     color: #000;
-    font-family: 'Georgia', 'Times New Roman', serif;
   }
 
   .document-body p {
@@ -109,7 +122,7 @@ const directivesWithContent = await Promise.all(
   }
 
   .document-body h2 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: bold;
     margin: 2rem 0 1rem 0;
     text-transform: uppercase;
@@ -119,7 +132,7 @@ const directivesWithContent = await Promise.all(
   }
 
   .document-body h3 {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     font-weight: bold;
     margin: 1.5rem 0 0.75rem 0;
     font-style: italic;
@@ -165,16 +178,15 @@ const directivesWithContent = await Promise.all(
     color: #666;
   }
 
-  .document-footer p {
+  .footer-text {
     margin: 0.25rem 0;
-    text-align: center;
   }
 
   @media print {
     .directive-document {
       box-shadow: none;
       margin-bottom: 0;
-      page-break-after: always;
     }
   }
 </style>
+
