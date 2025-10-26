@@ -1,0 +1,202 @@
+---
+import Base from "@/layouts/Base.astro";
+import BackgroundMist from "@/components/BackgroundMist.astro";
+import { readFileSync } from 'fs';
+import { join } from 'path';
+
+// Read directive files
+const directive7a = readFileSync(join(process.cwd(), 'src/Supplement/Directive_7A_Climatic_Rebalancing (1).md'), 'utf-8');
+const directive6c = readFileSync(join(process.cwd(), 'src/Supplement/Directive_6-C_SkyPlankton.md'), 'utf-8');
+const directive12e = readFileSync(join(process.cwd(), 'src/Supplement/Directive_12E_Orbital_Infrastructure.md'), 'utf-8');
+const directive9i = readFileSync(join(process.cwd(), 'src/Supplement/Directive_Cluster_9-I_Harmonic_Regulation_and_Emotional_Frequency_Governance.md'), 'utf-8');
+const futureMedicine = readFileSync(join(process.cwd(), 'src/Supplement/CSN_Future_Medicine_2070.md'), 'utf-8');
+const populationContinuity = readFileSync(join(process.cwd(), 'src/Supplement/CSN_Directive_3-Omega_Population_Continuity_and_EPP.md'), 'utf-8');
+const publicHealth = readFileSync(join(process.cwd(), 'src/Supplement/CSN_Public_Health_Bulletin_ESP.md'), 'utf-8');
+
+// Organize directives by category
+const terraformicDirectives = [
+  { content: directive7a, title: "Directive 7-A: Climatic Adaptation and the Great Rebalancing", category: "Terraformic Regulation" },
+  { content: directive6c, title: "Directive 6-C: Stratospheric Biota ('Sky Plankton')", category: "Terraformic Regulation" },
+  { content: directive12e, title: "Directive Cluster 12-E: Orbital Infrastructure & Environmental Symbiosis", category: "Terraformic Regulation" }
+];
+
+const governanceDirectives = [
+  { content: directive9i, title: "Directive Cluster 9-I: Harmonic Regulation & Emotional Frequency Governance", category: "Cultural-Neural Infrastructure" }
+];
+
+const healthDirectives = [
+  { content: futureMedicine, title: "Directive Cluster 7-Θ: Genomic Synchronization & Therapeutic Alignment", category: "Bio-Alignment Directorate" },
+  { content: populationContinuity, title: "Directive Cluster 3-Ω: Population Continuity & Emotional Efficiency Programs", category: "Genetic Continuity Bureau" },
+  { content: publicHealth, title: "Public Health Bulletin: Emotive Substrate Program (ESP)", category: "Public Health" }
+];
+
+<style>
+  /* Subtle console grid + glow */
+  .grid-bg {
+    background-image:
+      radial-gradient(transparent 1px, rgba(12,12,18,0.4) 1px),
+      radial-gradient(transparent 1px, rgba(12,12,18,0.4) 1px);
+    background-size: 24px 24px, 24px 24px;
+    background-position: 0 0, 12px 12px;
+  }
+  .chip {
+    @apply inline-flex items-center rounded px-2 py-0.5 text-[10px] font-mono tracking-wide;
+  }
+  .chip-green { 
+    background-color: rgba(20, 83, 45, 0.3);
+    color: rgb(134, 239, 172);
+    border: 1px solid rgba(21, 128, 61, 0.5);
+  }
+  .chip-cyan { 
+    background-color: rgba(19, 78, 74, 0.3);
+    color: rgb(94, 234, 212);
+    border: 1px solid rgba(15, 118, 110, 0.5);
+  }
+  .chip-amber { 
+    background-color: rgba(113, 63, 18, 0.3);
+    color: rgb(252, 211, 77);
+    border: 1px solid rgba(180, 83, 9, 0.5);
+  }
+  .chip-red { 
+    background-color: rgba(127, 29, 29, 0.3);
+    color: rgb(252, 165, 165);
+    border: 1px solid rgba(185, 28, 28, 0.5);
+  }
+  .chip-blue { 
+    background-color: rgba(30, 58, 138, 0.3);
+    color: rgb(147, 197, 253);
+    border: 1px solid rgba(29, 78, 216, 0.5);
+  }
+
+  /* Flicker for headers (very subtle) */
+  @keyframes scanline {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .92; }
+  }
+  .flicker { animation: scanline 4s linear infinite; }
+  details[open] summary .caret { transform: rotate(90deg); }
+  summary::-webkit-details-marker { display: none; }
+</style>
+
+<Base title="CSN Directives — LOSS DISFUNCTION" description="Civil Synthesis Network regulatory documents, directives, and public health bulletins.">
+  <section class="relative overflow-hidden min-h-screen grid-bg">
+    <BackgroundMist />
+
+    <div class="container relative z-10 mx-auto max-w-4xl py-12">
+      <h1 class="text-4xl font-bold page-h1 mb-2 flicker">CSN Directives</h1>
+      <p class="text-muted mb-8">Official Civil Synthesis Network regulatory documents, directives, and public health bulletins. <span class="text-cyan">Active as of 2070</span>.</p>
+
+      <!-- Terraformic Regulation Directives -->
+      <div class="mb-12">
+        <h2 class="text-2xl font-semibold text-ink mb-6 flex items-center gap-3">
+          <span class="chip chip-green">TERRAFORMIC REGULATION</span>
+          Environmental & Atmospheric Control
+        </h2>
+        
+        <div class="space-y-4">
+          {terraformicDirectives.map((directive) => (
+            <details class="group rounded-xl border border-[#1a1a26] bg-[#0b0b12]/80 backdrop-blur p-4 open:shadow-lg open:shadow-cyan-900/10 transition-shadow">
+              <summary class="flex cursor-pointer items-start justify-between gap-4">
+                <div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="text-lg font-semibold text-ink">{directive.title}</span>
+                    <span class="chip chip-cyan">2070</span>
+                    <span class="chip chip-green">ACTIVE</span>
+                  </div>
+                  <div class="text-xs text-muted mt-1">
+                    Category: {directive.category}
+                  </div>
+                </div>
+                <div class="caret mt-1 text-cyan transition-transform">▸</div>
+              </summary>
+
+              <div class="prose prose-invert max-w-none mt-4">
+                <div class="markdown-content" set:html={directive.content} />
+                <div class="mt-4 flex items-center gap-3 text-xs text-muted">
+                  <span class="chip chip-cyan">CSN Official Document</span>
+                  <span class="chip chip-green">Public Distribution</span>
+                </div>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- Cultural-Neural Infrastructure Directives -->
+      <div class="mb-12">
+        <h2 class="text-2xl font-semibold text-ink mb-6 flex items-center gap-3">
+          <span class="chip chip-amber">CULTURAL-NEURAL INFRASTRUCTURE</span>
+          Emotional & Social Control
+        </h2>
+        
+        <div class="space-y-4">
+          {governanceDirectives.map((directive) => (
+            <details class="group rounded-xl border border-[#1a1a26] bg-[#0b0b12]/80 backdrop-blur p-4 open:shadow-lg open:shadow-cyan-900/10 transition-shadow">
+              <summary class="flex cursor-pointer items-start justify-between gap-4">
+                <div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="text-lg font-semibold text-ink">{directive.title}</span>
+                    <span class="chip chip-cyan">2070</span>
+                    <span class="chip chip-green">ACTIVE</span>
+                  </div>
+                  <div class="text-xs text-muted mt-1">
+                    Category: {directive.category}
+                  </div>
+                </div>
+                <div class="caret mt-1 text-cyan transition-transform">▸</div>
+              </summary>
+
+              <div class="prose prose-invert max-w-none mt-4">
+                <div class="markdown-content" set:html={directive.content} />
+                <div class="mt-4 flex items-center gap-3 text-xs text-muted">
+                  <span class="chip chip-cyan">CSN Official Document</span>
+                  <span class="chip chip-green">Public Distribution</span>
+                </div>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- Health & Population Directives -->
+      <div class="mb-12">
+        <h2 class="text-2xl font-semibold text-ink mb-6 flex items-center gap-3">
+          <span class="chip chip-red">BIO-ALIGNMENT DIRECTORATE</span>
+          Health, Population & Genetic Control
+        </h2>
+        
+        <div class="space-y-4">
+          {healthDirectives.map((directive) => (
+            <details class="group rounded-xl border border-[#1a1a26] bg-[#0b0b12]/80 backdrop-blur p-4 open:shadow-lg open:shadow-cyan-900/10 transition-shadow">
+              <summary class="flex cursor-pointer items-start justify-between gap-4">
+                <div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="text-lg font-semibold text-ink">{directive.title}</span>
+                    <span class="chip chip-cyan">2070</span>
+                    <span class="chip chip-green">ACTIVE</span>
+                  </div>
+                  <div class="text-xs text-muted mt-1">
+                    Category: {directive.category}
+                  </div>
+                </div>
+                <div class="caret mt-1 text-cyan transition-transform">▸</div>
+              </summary>
+
+              <div class="prose prose-invert max-w-none mt-4">
+                <div class="markdown-content" set:html={directive.content} />
+                <div class="mt-4 flex items-center gap-3 text-xs text-muted">
+                  <span class="chip chip-cyan">CSN Official Document</span>
+                  <span class="chip chip-green">Public Distribution</span>
+                </div>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <footer class="mt-12 border-t border-[#1a1a26] pt-6 text-xs text-muted">
+        Civil Synthesis Network • <span class="text-cyan">Active Directives 2070</span> • Compliance Mandatory
+      </footer>
+    </div>
+  </section>
+</Base>

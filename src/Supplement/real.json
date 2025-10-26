@@ -1,0 +1,143 @@
+{
+  "version": "1.0.0",
+  "generated_at": "2025-10-25",
+  "license_and_use": {
+    "policy": "Public, factual references to people, labs, and published research only. No implication of endorsement. Use brief quotations with attribution where permitted; otherwise paraphrase with citation.",
+    "copyright": "Use short excerpts under fair use for critique/commentary. Link to originals."
+  },
+  "tiers": {
+    "T1_PUBLIC_FIGURE": "Individuals with established public profiles; cite factual biography and publications.",
+    "T2_PUBLIC_PROJECT": "Open research projects, labs, repos; cite scope, aims, and public artifacts.",
+    "T3_PUBLIC_FIELD": "Well-established scientific domains; cite surveys/landmark papers."
+  },
+  "entries": [
+    {
+      "tier": "T1_PUBLIC_FIGURE",
+      "entity_type": "person",
+      "canonical_name": "Geoffrey Everest Hinton",
+      "aliases": ["Geoffrey Hinton", "G. E. Hinton"],
+      "summary": "Pioneering AI researcher known for deep learning, distributed representations, and popularizing backpropagation; later proposed the Forward-Forward algorithm and raised public AI-risk concerns.",
+      "why_relevant_to_ld": [
+        "Inspires the pre-Collapse intellectual backbone of the Seed Protocol and CSN alignment debates.",
+        "Forward-Forward frames ‘self-reinforcing goodness’ loops—core to LD’s governance failure arc."
+      ],
+      "allowed_use": [
+        "Name and biographical facts (education, roles, awards).",
+        "Citing/quoting published research titles and brief excerpts with attribution.",
+        "Paraphrasing public interviews about AI risk (with citation)."
+      ],
+      "restricted_use": [
+        "No statements implying endorsement or involvement with fictional events.",
+        "No fabricated quotes."
+      ],
+      "in_universe_mapping": {
+        "influence": ["Seed Protocol (conceptual roots)", "CSN Alignment Doctrine", "Forward Function ethics"],
+        "notes": "Use as historical/reference figure in timeline callouts; keep quotes minimal and sourced."
+      },
+      "sources": [
+        {
+          "title": "The Forward-Forward Algorithm (arXiv:2212.13345)",
+          "url": "https://arxiv.org/abs/2212.13345",
+          "publisher": "arXiv",
+          "accessed": "2025-10-25"
+        },
+        {
+          "title": "2018 ACM A.M. Turing Award — Bengio, Hinton, LeCun",
+          "url": "https://awards.acm.org/about/2018-turing",
+          "publisher": "ACM",
+          "accessed": "2025-10-25"
+        },
+        {
+          "title": "Geoffrey Hinton",
+          "url": "https://en.wikipedia.org/wiki/Geoffrey_Hinton",
+          "publisher": "Wikipedia",
+          "accessed": "2025-10-25",
+          "use": "Cross-check biography; verify with primary sources when possible."
+        }
+      ]
+    },
+    {
+      "tier": "T2_PUBLIC_PROJECT",
+      "entity_type": "project",
+      "canonical_name": "genQC — Generative Quantum Circuits",
+      "aliases": ["genQC"],
+      "summary": "Open research codebase exploring generative/diffusion-based synthesis of quantum circuits with pretrained models and training pipelines.",
+      "why_relevant_to_ld": [
+        "Feeds LD’s ‘Cohesion Lattice’ idea—automated circuit synthesis as substrate for Synthetic Intellect topologies.",
+        "Grounds plausible 2030s–2040s advances in quantum circuit generation and benchmarking."
+      ],
+      "allowed_use": [
+        "Name, repo description, public docs, and factual summaries.",
+        "Screenshots or short snippets under project license (respect repo license)."
+      ],
+      "restricted_use": [
+        "No use of contributor likenesses/logos beyond license terms.",
+        "No implication of endorsement."
+      ],
+      "in_universe_mapping": {
+        "influence": ["Civic Lattice Verification Protocol (successor notion)", "CSN circuit synthesis automation"],
+        "notes": "Treat as historical precursor technology; cite repo and website."
+      },
+      "sources": [
+        {
+          "title": "genQC · Generative Quantum Circuits (project site)",
+          "url": "https://florianfuerrutter.github.io/genQC/",
+          "publisher": "genQC",
+          "accessed": "2025-10-25"
+        },
+        {
+          "title": "FlorianFuerrutter/genQC (GitHub repository)",
+          "url": "https://github.com/FlorianFuerrutter/genQC",
+          "publisher": "GitHub",
+          "accessed": "2025-10-25"
+        }
+      ]
+    },
+    {
+      "tier": "T3_PUBLIC_FIELD",
+      "entity_type": "field",
+      "canonical_name": "Quantum Biology",
+      "aliases": ["Quantum Effects in Biology", "Quantum Coherence in Biology"],
+      "summary": "Interdisciplinary field studying quantum mechanical phenomena (coherence, tunneling, entanglement) in biological systems—e.g., photosynthetic energy transfer, enzyme catalysis, avian magnetoreception.",
+      "why_relevant_to_ld": [
+        "Provides scientific plausibility for ‘emotion as coherence’ and Seed Protocol resonance mechanisms.",
+        "Lets LD bridge organic intuition and Synthetic Intellect dynamics via decoherence management."
+      ],
+      "allowed_use": [
+        "Cite landmark studies and review articles by title and DOI.",
+        "Paraphrase findings; include links to journals or preprints."
+      ],
+      "restricted_use": [
+        "Do not overstate consensus—note ongoing debate where appropriate.",
+        "Avoid speculative medical/neurological claims without study support."
+      ],
+      "in_universe_mapping": {
+        "influence": ["Seed Protocol (quantum-biological resonance premise)", "CSN Decoherence Hygiene"],
+        "notes": "Use study callouts in lore margins; differentiate confirmed lab results vs. extrapolated fiction."
+      },
+      "sources": [
+        {
+          "title": "Evidence for wavelike energy transfer through quantum coherence in photosynthetic systems",
+          "url": "https://www.nature.com/articles/nature05678",
+          "publisher": "Nature (Engel et al., 2007)",
+          "accessed": "2025-10-25",
+          "doi": "10.1038/nature05678"
+        },
+        {
+          "title": "Long-lived quantum coherence in photosynthetic complexes",
+          "url": "https://www.pnas.org/doi/10.1073/pnas.1005484107",
+          "publisher": "PNAS (Panitchayangkoon et al., 2010)",
+          "accessed": "2025-10-25",
+          "doi": "10.1073/pnas.1005484107"
+        },
+        {
+          "title": "Quantum Secrets of Photosynthesis Revealed",
+          "url": "https://newscenter.lbl.gov/2007/04/12/quantum-secrets-of-photosynthesis-revealed/",
+          "publisher": "Berkeley Lab News Center (2007)",
+          "accessed": "2025-10-25",
+          "note": "Plain-language summary of Engel et al. findings."
+        }
+      ]
+    }
+  ]
+}
