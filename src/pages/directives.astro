@@ -7,10 +7,18 @@ import { getCollection } from "astro:content";
 const allDirectives = await getCollection("directives");
 const directives = allDirectives.sort((a, b) => a.data.id.localeCompare(b.data.id));
 
+// Pre-render all directive content
+const directivesWithContent = await Promise.all(
+  directives.map(async (directive) => ({
+    ...directive,
+    renderedContent: await directive.render()
+  }))
+);
+
 // Group by category
-const terraformicDirectives = directives.filter(d => d.data.category === "Terraformic Regulation");
-const governanceDirectives = directives.filter(d => d.data.category === "Cultural-Neural Infrastructure");
-const healthDirectives = directives.filter(d => d.data.category === "Bio-Alignment Directorate" || d.data.category === "Public Health");
+const terraformicDirectives = directivesWithContent.filter(d => d.data.category === "Terraformic Regulation");
+const governanceDirectives = directivesWithContent.filter(d => d.data.category === "Cultural-Neural Infrastructure");
+const healthDirectives = directivesWithContent.filter(d => d.data.category === "Bio-Alignment Directorate" || d.data.category === "Public Health");
 ---
 
 <style>
@@ -99,10 +107,7 @@ const healthDirectives = directives.filter(d => d.data.category === "Bio-Alignme
               </summary>
 
               <div class="prose prose-invert max-w-none mt-4">
-                <div class="text-sm text-muted">
-                  <p>Content will be rendered from MDX...</p>
-                  <p class="mt-2"><em>Directive ID: {directive.data.id}</em></p>
-                </div>
+                <directive.renderedContent.Content />
                 <div class="mt-4 flex items-center gap-3 text-xs text-muted">
                   <span class="chip chip-cyan">CSN Official Document</span>
                   <span class="chip chip-green">Public Distribution</span>
