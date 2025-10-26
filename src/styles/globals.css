@@ -63,20 +63,35 @@ html, body {
 
 .card { 
   @apply bg-[#0b0b12] border border-[#1a1a26] rounded-2xl overflow-hidden shadow-glow hover:shadow-glowcyan transition-transform;
-  background-color: #0b0b12 !important;
-  color: #f2f2f7 !important;
+  background-color: #0b0b12;
+  color: #f2f2f7;
+  border-color: #1a1a26;
+}
+
+html.light .card {
+  background-color: #ffffff;
+  color: #1f2937;
+  border-color: #d1d5db;
 }
 
 .card h3 {
-  color: #f2f2f7 !important;
+  color: #f2f2f7;
+}
+
+html.light .card h3 {
+  color: #1f2937;
 }
 
 .card p {
-  color: #a3a3b2 !important;
+  color: #a3a3b2;
+}
+
+html.light .card p {
+  color: #4b5563;
 }
 
 .card .description {
-  color: #a3a3b2 !important;
+  color: #a3a3b2;
   line-height: 1.6;
   scrollbar-width: thin;
   scrollbar-color: #1a1a26 #0b0b12;
@@ -84,14 +99,46 @@ html, body {
   font-size: 0.75rem;
 }
 
+html.light .card .description {
+  color: #4b5563;
+  scrollbar-color: #d1d5db #ffffff;
+}
+
 .card .description strong {
-  color: #00ffff !important;
+  color: #00ffff;
   font-weight: 600;
 }
 
+html.light .card .description strong {
+  color: #1d4ed8;
+}
+
 .card .description em {
-  color: #8b5cf6 !important;
+  color: #8b5cf6;
   font-style: italic;
+}
+
+html.light .card .description em {
+  color: #7c3aed;
+}
+
+/* Details cards for archives and directives */
+details.accordion-card {
+  background-color: #0b0b12;
+  border: 1px solid #1a1a26;
+}
+
+html.light details.accordion-card {
+  background-color: #ffffff;
+  border-color: #d1d5db;
+}
+
+details.accordion-card summary {
+  color: var(--ink);
+}
+
+html.light details.accordion-card summary {
+  color: var(--ink);
 }
 
 .card .description code {
