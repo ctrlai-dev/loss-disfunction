@@ -14,14 +14,14 @@ const directivesWithContent = await Promise.all(
 ---
 
 <Base title="CSN Directives — LOSS DISFUNCTION" description="Civil Synthesis Network regulatory documents, directives, and public health bulletins.">
-  <section class="relative overflow-hidden min-h-screen bg-gray-100 p-8">
+  <section class="relative overflow-hidden min-h-screen" style="background: #f5f5f5; padding: 0;">
     <!-- Floating Menu -->
     <nav class="fixed left-4 top-24 w-56 bg-white border-2 border-gray-800 shadow-lg max-h-[calc(100vh-120px)] overflow-y-auto z-50 hidden md:block">
       <h3 class="p-3 bg-gray-800 text-white text-sm font-bold uppercase">Directives</h3>
       <ul class="list-none p-0 m-0">
         {directivesWithContent.map((directive, index) => (
           <li class="border-b border-gray-200">
-            <a href={`#directive-${index}`} class="block p-3 text-xs text-gray-900 no-underline hover:bg-gray-100">
+            <a href={`#directive-${index}`} class="block p-3 text-xs text-black no-underline hover:bg-gray-100 font-sans">
               {directive.data.id}: {directive.data.title.substring(0, 30)}{directive.data.title.length > 30 ? '...' : ''}
             </a>
           </li>
@@ -29,13 +29,13 @@ const directivesWithContent = await Promise.all(
       </ul>
     </nav>
 
-    <div class="max-w-4xl ml-0 md:ml-64 mr-auto px-4">
+    <div class="max-w-5xl ml-0 md:ml-64 mr-auto px-4 py-8">
       {directivesWithContent.map((directive, index) => (
-        <article class="bg-white shadow-md p-10 mb-8" id={`directive-${index}`}>
+        <article class="bg-white shadow-md p-12 mb-12 text-black" id={`directive-${index}`}>
           <!-- Document Header -->
           <header class="border-b-2 border-black pb-4 mb-8">
-            <div class="text-2xl font-bold uppercase tracking-wide mb-4">{directive.data.title}</div>
-            <div class="flex flex-wrap gap-4 text-xs text-gray-600 font-mono">
+            <div class="text-3xl font-bold uppercase tracking-wide mb-4 text-black">{directive.data.title}</div>
+            <div class="flex flex-wrap gap-4 text-xs text-gray-700 font-mono">
               <span>ID: {directive.data.id}</span>
               <span>Category: {directive.data.category}</span>
               <span>Year: {directive.data.year}</span>
@@ -46,12 +46,12 @@ const directivesWithContent = await Promise.all(
           </header>
 
           <!-- Document Body -->
-          <div class="prose prose-lg max-w-none text-gray-900">
+          <div style="font-size: 14px; line-height: 1.6; color: #000;">
             <directive.renderedContent.Content />
           </div>
 
           <!-- Document Footer -->
-          <footer class="border-t-2 border-black mt-8 pt-4 text-center text-xs text-gray-600">
+          <footer class="border-t-2 border-black mt-8 pt-4 text-center text-xs text-gray-700">
             <p>CSN Official Document • Classification: {directive.data.classification} • {directive.data.year}</p>
             <p>Civil Synthesis Network • All Rights Reserved</p>
           </footer>
@@ -60,3 +60,43 @@ const directivesWithContent = await Promise.all(
     </div>
   </section>
 </Base>
+
+<style>
+  /* Force all text to be black and readable */
+  .prose,
+  .prose *,
+  .prose-invert,
+  .prose-invert * {
+    color: #000 !important;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose-invert h1,
+  .prose-invert h2,
+  .prose-invert h3,
+  .prose-invert h4 {
+    color: #000 !important;
+    font-weight: bold !important;
+  }
+
+  .prose p {
+    margin-top: 12px !important;
+    margin-bottom: 12px !important;
+    color: #000 !important;
+  }
+
+  .prose h2 {
+    margin-top: 32px !important;
+    margin-bottom: 16px !important;
+    color: #000 !important;
+  }
+
+  .prose h3 {
+    margin-top: 24px !important;
+    margin-bottom: 12px !important;
+    color: #000 !important;
+  }
+</style>
