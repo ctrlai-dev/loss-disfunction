@@ -7,45 +7,6 @@ const logs = (await getCollection("logs")).sort((a,b)=>a.data.index-b.data.index
 ---
 
 <style>
-  /* Override prose-invert for light backgrounds */
-  .prose-invert {
-    color: #111827 !important;
-  }
-  
-  .prose-invert h1,
-  .prose-invert h2,
-  .prose-invert h3,
-  .prose-invert h4,
-  .prose-invert h5,
-  .prose-invert h6 {
-    color: #000000 !important;
-    font-weight: 600;
-  }
-  
-  .prose-invert strong {
-    color: #000000 !important;
-    font-weight: 600;
-  }
-  
-  .prose-invert em {
-    color: #111827 !important;
-    font-style: italic;
-  }
-  
-  .prose-invert blockquote p {
-    color: #111827 !important;
-    margin: 0;
-  }
-  
-  .prose-invert a {
-    color: #1d4ed8 !important;
-    text-decoration: none;
-  }
-  
-  .prose-invert a:hover {
-    color: #1e40af !important;
-    text-decoration: underline;
-  }
 </style>
 <Base title="System Logs — LOSS DISFUNCTION">
   <section class="relative overflow-hidden min-h-screen dark:bg-[#050507]">

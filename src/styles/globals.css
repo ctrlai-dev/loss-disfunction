@@ -135,51 +135,61 @@ html, body {
 .btn { background: linear-gradient(90deg, var(--cyan), var(--violet)); box-shadow: 0 0 30px rgba(0,255,255,0.15); }
 .btn:hover { box-shadow: 0 0 40px rgba(139,92,246,0.25); }
 
-/* Override prose-invert for light backgrounds - MAXIMUM CONTRAST */
-.prose-invert,
-.prose-invert *,
-.prose-invert p,
-.prose-invert div,
-.prose-invert span {
-  color: #000000 !important;
-}
-
-.prose-invert h1,
-.prose-invert h2,
-.prose-invert h3,
-.prose-invert h4,
-.prose-invert h5,
-.prose-invert h6 {
-  color: #000000 !important;
-  font-weight: 700 !important;
+/* Prose content in cards should have proper colors */
+.prose-invert {
+  color: var(--ink);
 }
 
 .prose-invert strong,
 .prose-invert b {
-  color: #000000 !important;
-  font-weight: 700 !important;
+  color: var(--cyan);
+  font-weight: 600;
 }
 
 .prose-invert em,
 .prose-invert i {
-  color: #000000 !important;
-  font-style: italic !important;
-}
-
-.prose-invert blockquote,
-.prose-invert blockquote p {
-  color: #000000 !important;
-  margin: 0 !important;
+  color: var(--violet);
+  font-style: italic;
 }
 
 .prose-invert a {
-  color: #0000ff !important;
-  text-decoration: underline !important;
+  color: var(--cyan);
+  text-decoration: underline;
 }
 
 .prose-invert a:hover {
-  color: #000080 !important;
-  text-decoration: underline !important;
+  color: var(--violet);
+}
+
+.prose-invert code {
+  background-color: #0b0b12;
+  color: #d7d0ff;
+  border: 1px solid #262649;
+}
+
+/* Light theme prose colors */
+html.light .prose-invert strong,
+html.light .prose-invert b {
+  color: #1d4ed8;
+}
+
+html.light .prose-invert em,
+html.light .prose-invert i {
+  color: #7c3aed;
+}
+
+html.light .prose-invert a {
+  color: #1d4ed8;
+}
+
+html.light .prose-invert a:hover {
+  color: #7c3aed;
+}
+
+html.light .prose-invert code {
+  background-color: #e5e7eb;
+  color: #1f2937;
+  border: 1px solid #d1d5db;
 }
 
 /* Enhanced prose styling for System Logs - REMOVED CONFLICTING RULES */
