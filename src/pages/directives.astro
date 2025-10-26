@@ -100,13 +100,20 @@ const directivesWithContent = await Promise.all(
     color: #000 !important;
   }
 
+  article hr {
+    margin: 32px 0 !important;
+    border: none !important;
+    border-top: 2px solid #000 !important;
+    height: 2px !important;
+    background: none !important;
+    padding: 0 !important;
+  }
+
   .prose hr,
   .prose-invert hr {
     margin: 32px 0 !important;
+    border: none !important;
     border-top: 2px solid #000 !important;
-    border-bottom: none !important;
-    border-left: none !important;
-    border-right: none !important;
     height: 2px !important;
     background: none !important;
   }
