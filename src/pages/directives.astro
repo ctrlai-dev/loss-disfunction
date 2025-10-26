@@ -34,7 +34,7 @@ const directivesWithContent = await Promise.all(
         <article class="directive-document" id={`directive-${index}`}>
           <!-- Document Header -->
           <header class="document-header">
-            <h1 class="document-title">{directive.data.title}</h1>
+            <div class="document-title">{directive.data.title}</div>
             <div class="document-meta">
               <span class="meta-item">ID: {directive.data.id}</span>
               <span class="meta-item">Category: {directive.data.category}</span>
@@ -133,12 +133,14 @@ const directivesWithContent = await Promise.all(
   .document-title {
     font-size: 18pt;
     font-weight: bold;
-    margin: 0 0 10pt 0;
+    margin: 0 0 12pt 0;
+    padding: 12pt 0 0 0;
     text-transform: uppercase;
     letter-spacing: 0.03em;
     font-family: Arial, sans-serif;
     color: #000;
     line-height: 1.3;
+    display: block;
   }
 
   .document-meta {
@@ -173,8 +175,7 @@ const directivesWithContent = await Promise.all(
     widows: 3;
   }
 
-  .document-body h1,
-  .document-body h2 {
+  .document-body h1 {
     font-size: 13pt;
     font-weight: bold;
     margin: 24pt 0 8pt 0;
@@ -187,10 +188,22 @@ const directivesWithContent = await Promise.all(
     page-break-after: avoid;
   }
 
-  .document-body h3 {
+  .document-body h2 {
     font-size: 11pt;
     font-weight: bold;
     margin: 18pt 0 6pt 0;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-family: Arial, sans-serif;
+    color: #000;
+    page-break-after: avoid;
+  }
+
+  .document-body h3 {
+    font-size: 10pt;
+    font-weight: bold;
+    margin: 14pt 0 4pt 0;
+    font-style: italic;
     font-family: Arial, sans-serif;
     color: #000;
     page-break-after: avoid;
@@ -285,6 +298,51 @@ const directivesWithContent = await Promise.all(
   @media screen {
     .directive-document {
       margin-bottom: 40px;
+    }
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+    .floating-menu {
+      display: none;
+    }
+
+    .document-container {
+      margin: 0;
+      padding: 1rem;
+      max-width: 100%;
+    }
+
+    .directive-document {
+      width: 100%;
+      min-height: auto;
+      padding: 15mm 10mm;
+      margin: 0 0 20px 0;
+    }
+
+    .document-title {
+      font-size: 14pt;
+    }
+
+    .document-meta {
+      font-size: 8pt;
+      gap: 0.5rem;
+    }
+
+    .document-body {
+      font-size: 9pt;
+    }
+
+    .document-body h1 {
+      font-size: 11pt;
+    }
+
+    .document-body h2 {
+      font-size: 10pt;
+    }
+
+    .document-body h3 {
+      font-size: 9pt;
     }
   }
 </style>
