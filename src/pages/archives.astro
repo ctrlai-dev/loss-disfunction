@@ -54,9 +54,13 @@ const archives = (await getCollection("archives")).sort((a, b) => a.data.id.loca
   details[open] summary .caret { transform: rotate(90deg); }
   summary::-webkit-details-marker { display: none; }
 
-  /* Override prose-invert for light backgrounds */
-  .prose-invert {
-    color: #111827 !important;
+  /* Override prose-invert for light backgrounds - MAXIMUM CONTRAST */
+  .prose-invert,
+  .prose-invert *,
+  .prose-invert p,
+  .prose-invert div,
+  .prose-invert span {
+    color: #000000 !important;
   }
   
   .prose-invert h1,
@@ -66,32 +70,35 @@ const archives = (await getCollection("archives")).sort((a, b) => a.data.id.loca
   .prose-invert h5,
   .prose-invert h6 {
     color: #000000 !important;
-    font-weight: 600;
+    font-weight: 700 !important;
   }
   
-  .prose-invert strong {
+  .prose-invert strong,
+  .prose-invert b {
     color: #000000 !important;
-    font-weight: 600;
+    font-weight: 700 !important;
   }
   
-  .prose-invert em {
-    color: #111827 !important;
-    font-style: italic;
+  .prose-invert em,
+  .prose-invert i {
+    color: #000000 !important;
+    font-style: italic !important;
   }
   
+  .prose-invert blockquote,
   .prose-invert blockquote p {
-    color: #111827 !important;
-    margin: 0;
+    color: #000000 !important;
+    margin: 0 !important;
   }
   
   .prose-invert a {
-    color: #1d4ed8 !important;
-    text-decoration: none;
+    color: #0000ff !important;
+    text-decoration: underline !important;
   }
   
   .prose-invert a:hover {
-    color: #1e40af !important;
-    text-decoration: underline;
+    color: #000080 !important;
+    text-decoration: underline !important;
   }
 </style>
 
