@@ -239,6 +239,17 @@ html.light .prose-invert code {
   border: 1px solid #d1d5db;
 }
 
+/* Horizontal rules with padding */
+hr {
+  margin: 10px 0;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+html.light hr {
+  border-top-color: rgba(0, 0, 0, 0.1);
+}
+
 /* Enhanced prose styling for System Logs - REMOVED CONFLICTING RULES */
 
 /* Background Mist Effect - TEST VERSION */
